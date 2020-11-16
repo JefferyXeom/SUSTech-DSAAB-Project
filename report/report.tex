@@ -1,0 +1,138 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{geometry,amsmath,amssymb,theorem,caption,extarrows,mathrsfs}
+\usepackage{graphicx,xcolor,listings,geometry,booktabs,subfigure,tikz}
+\usepackage{pgfplots,grffile}
+\pgfplotsset{compat=newest}
+  %% the following commands are needed for some matlab2tikz features
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usepgfplotslibrary{patchplots}
+\usepackage{xeCJK,fontspec}
+\setCJKmainfont[BoldFont=方正小标宋简体,ItalicFont=楷体]{华文宋体}
+  \setCJKsansfont{黑体}%serif是有衬线字体sans serif无衬线字体。
+  %\setmonofont{CMU Typewriter Text} % 等寬字型
+  \XeTeXlinebreaklocale "zh"
+  \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+\lstset{
+    basicstyle          =   \sffamily,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \zihao{-5}\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   tb,   % 显示边框
+}
+
+\lstdefinestyle{Python}{
+    language        =   Python, % 语言选Python
+    basicstyle      =   \zihao{-5}\ttfamily,
+    numberstyle     =   \zihao{-5}\ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal},
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color[HTML]{338AAF}\ttfamily,
+    breaklines      =   true,   % 自动换行，建议不要写太长的行
+    columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+    basewidth       =   0.5em,
+}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mathematica}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color[HTML]{338AAF}\ttfamily,
+    keywordstyle=\zihao{-5}\sffamily\bfseries\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\zihao{-5}\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    basewidth=0.5em,
+    captionpos=b,
+    columns=fixed,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+\lstdefinestyle{matlab}{
+    language=matlab,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color[HTML]{338AAF}\ttfamily,
+    keywordstyle=\zihao{-5}\sffamily\bfseries\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\zihao{-5}\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    basewidth=0.5em,
+    captionpos=b,
+    columns=fixed,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand{\tr}{\mathop{}\!\mathrm{T}}
+\newcommand{\const}{\mathop{}\!\mathrm{const.}}
+%%%%%%%%%% Start TeXmacs macros
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active \def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\newcommand{\barsuchthat}{|}
+\newcommand{\divides}{\mathrel{|}}
+\newcommand{\mathd}{\mathrm{d}}
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextbf}[1]{{\bfseries{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\splitline}{\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}}
+\newcommand{\autographinsert}[2]{\includegraphics[
+  height=\dimexpr\pagegoal-\pagetotal-4\baselineskip\relax,width=#1\textwidth,
+  keepaspectratio]{#2}}
+  % NOTE: 插入图片如果出问题飘到下一页,请调整减掉的行数
+\newtheorem{theorem}{定理}
+%%%%%%%%%% End TeXmacs macros
+\geometry{a4paper,left=1.8cm,right=1.8cm,top=1.5cm,bottom=1.5cm}
+\begin{document}
+    \title{Report for CS203B project}
+    \author{** 作者 **}
+    \date{2020.11.16}
+    \maketitle
+\tableofcontents
+
+\section{Introduction}
+\label{sec::Intro}
+
+\section{Background}
+\label{sec::bgnd}
+
+\section{Therotical Analysis}
+\label{sec::TA}
+
+\section{Methodology}
+\label{sec::Meth}
+
+\section{Experiment Design}
+\label{sec::ExpDesign}
+
+\section{Empirical Analysis}
+\label{sec::EmpAnlys}
+\section{Conclusion}
+\label{sec::Conc}
+
+\end{document}

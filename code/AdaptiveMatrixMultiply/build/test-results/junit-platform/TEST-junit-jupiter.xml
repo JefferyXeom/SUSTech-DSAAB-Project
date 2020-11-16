@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="1" skipped="0" failures="0" errors="0" time="0.045" hostname="FalkenSakurai" timestamp="2020-11-16T18:34:47">
+<properties>
+<property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+<property name="file.encoding" value="GBK"/>
+<property name="file.separator" value="\"/>
+<property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+<property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+<property name="java.class.path" value="D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\classes\java\test;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\resources\test;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\classes\java\main;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\resources\main;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.7.0\eadb73c5074a4ac71061defd00fc176152a4d12c\junit-platform-engine-1.7.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.7.0\84e309fbf21d857aac079a3c1fffd84284e1114d\junit-platform-commons-1.7.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-engine\5.7.0\d9044d6b45e2232ddd53fa56c15333e43d1749fd\junit-jupiter-engine-5.7.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.7.0\b25f3815c4c1860a73041e733a14a0379d00c4d5\junit-jupiter-api-5.7.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.1.0\fc9dff4bb36d627bdc553de77e1f17efd790876c\apiguardian-api-1.1.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.2.0\28c11eb91f9b6d8e200631d46e20a7f407f2a046\opentest4j-1.2.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-console\1.2.0\945a6e1dc84fb16450bbdc0fa5043ab8572491f\junit-platform-console-1.2.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-launcher\1.2.0\ea230ba8c0b71943d4dd2bb215ca29041c89966e\junit-platform-launcher-1.2.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.2.0\35fa3529ce843ada1a10b0909ccb4a8148ee638d\junit-platform-engine-1.2.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.2.0\dbce1d822d3dc6c61703b340cd79018518685451\junit-platform-commons-1.2.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.0.0\3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d\apiguardian-api-1.0.0.jar;D:\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.1.0\c8e2a3e3bc7f3e4bb5075306452db5290f9b117a\opentest4j-1.1.0.jar"/>
+<property name="java.class.version" value="55.0"/>
+<property name="java.home" value="D:\JAVA\jdk"/>
+<property name="java.io.tmpdir" value="C:\Users\desol\AppData\Local\Temp\"/>
+<property name="java.library.path" value="D:\JAVA\jdk\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\LLVM\bin;D:\ScoopApps\shims;D:\Anaconda;D:\Anaconda\Lib\site-packages;D:\Anaconda\Library\mingw-w64\bin;D:\Anaconda\Library\usr\bin;D:\Anaconda\Library\bin;D:\Anaconda\Scripts;D:\Anaconda\bin;D:\Anaconda\condabin;D:\Anaconda\PyCharm Professional Edition with Anaconda plugin 2019.2.1\bin;D:\Anaconda\Lib;D:\Anaconda\Scripts;D:\Anaconda\pkgs;;D:\Parallel Studio XE\compilers_and_libraries_2020.0.164\windows\mpi\intel64\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\mpirt;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;D:\MATLAB\R2020a\runtime\win64;D:\MATLAB\R2020a\bin;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS\System32\wbem;C:\Program Files\PowerShell\7\;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\Node.js\;C:\Program Files\Wolfram Research\WolframScript\;C:\Program Files (x86)\Wolfram Research\WolframScript\;D:\TM\;D:\Microsoft VS Code\bin;D:\Microsoft VS Code;C:\Program Files\Wolfram Research\WolframScript;D:\TM\TeXLive\2020\bin\win32;D:\MinGW\mingw64\bin;D:\MATLAB\bin\win64;D:\GNU Arm Embedded Toolchain\9 2020-q2-update\arm-none-eabi\bin;D:\GNU Arm Embedded Toolchain\9 2020-q2-update\bin;C:\Users\desol\AppData\Roaming\Python\Python37\Scripts;C:\Program Files (x86)\Piccure+\Standalone\;C:\Program Files\Piccure+\Standalone\;D:\Internet Download Manager;D:\MATLAB\MATLAB Runtime\v98\runtime\win64;E:\LxRunOffline-v3.5.0-msvc;D:\JAVA\jdk\bin;D:\JAVA\jdk\jre\bin;D:\JAVA\apachemaven3.6.3\bin;D:\JAVA\IntelliJ IDEA\IntelliJ IDEA Community Edition 2019.3.3\bin;;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\OpenSSH\;E:\Calibre2\;D:\Visual Studio\2019\Professional\VC\Tools\MSVC\14.27.29110\bin\Hostx64\x64;D:\Visual Studio\2019\Professional\VC\Tools\MSVC\14.27.29110\bin\Hostx64\x86;D:\Visual Studio\2019\Professional\VC\Tools\MSVC\14.27.29110\bin\Hostx64\arm64;C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64;C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\arm64;C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\arm;C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0\x64;C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE;D:\gnuglobal\bin;D:\Visual Studio\MSBuild\Current\Bin\amd64;D:\Visual Studio\MSBuild\Current\Bin;D:\Gradle\gradle-6.6.1\bin;C:\Program Files\National Instruments\Shared\OpenVINO\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin\;C:\Program Files\IVI Foundation\VISA\Win64\Bin\;C:\Program Files (x86)\IVI Foundation\VISA\WinNT\Bin;E:\PuTTY\;C:\Program Files (x86)\IncrediBuild;C:\Program Files\MATLAB\MATLAB Runtime\v95\runtime\win64;E:\Neovim\bin;E:\Go\bin;C:\Program Files (x86)\IVI Foundation\IVI\bin;C:\Program Files\IVI Foundation\IVI\bin;C:\Program Files (x86)\National Instruments\Shared\LabVIEW CLI;D:\Git\cmd;D:\SDCC\bin;."/>
+<property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+<property name="java.runtime.version" value="11.0.6+8-LTS"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="11"/>
+<property name="java.vendor" value="Oracle Corporation"/>
+<property name="java.vendor.url" value="http://java.oracle.com/"/>
+<property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
+<property name="java.vendor.version" value="18.9"/>
+<property name="java.version" value="11.0.6"/>
+<property name="java.version.date" value="2020-01-14"/>
+<property name="java.vm.compressedOopsMode" value="Zero based"/>
+<property name="java.vm.info" value="mixed mode"/>
+<property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="11"/>
+<property name="java.vm.vendor" value="Oracle Corporation"/>
+<property name="java.vm.version" value="11.0.6+8-LTS"/>
+<property name="jdk.debug" value="release"/>
+<property name="line.separator" value="
+"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Windows 10"/>
+<property name="os.version" value="10.0"/>
+<property name="path.separator" value=";"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="D:\JAVA\jdk\bin"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.cpu.isalist" value="amd64"/>
+<property name="sun.desktop" value="windows"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --details NONE --scan-class-path D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\classes\java\main;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\resources\main;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\classes\java\test;D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\resources\test -n ^(Test.*|.+[.$]Test.*|.*Tests?)$ --reports-dir D:\CS203B\Project\code\AdaptiveMatrixMultiply\build\test-results\junit-platform"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="GBK"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="sun.os.patch.level" value=""/>
+<property name="user.country" value="CN"/>
+<property name="user.dir" value="D:\CS203B\Project\code\AdaptiveMatrixMultiply"/>
+<property name="user.home" value="C:\Users\desol"/>
+<property name="user.language" value="zh"/>
+<property name="user.name" value="desol"/>
+<property name="user.script" value=""/>
+<property name="user.timezone" value="Asia/Shanghai"/>
+<property name="user.variant" value=""/>
+</properties>
+<testcase name="main()" classname="test1Test" time="0.019">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:test1Test]/[method:main()]
+display-name: main()
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>
