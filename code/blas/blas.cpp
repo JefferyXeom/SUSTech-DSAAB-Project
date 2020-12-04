@@ -1,48 +1,41 @@
 ﻿#include <cstdlib>
 #include <cstdio>
 #include <mkl.h>
+#include <windows.h>
 
-int main(int argc, char* argv[])
-{
-    float* A, * B, * C;
-    int m = 2, n = 5, a = 1;
-    A = (float*)MKL_malloc(m * n * sizeof(float), 64);
-    B = (float*)MKL_malloc(m * sizeof(float), 64);
-    C = (float*)MKL_malloc(n * sizeof(float), 64);
-    printf("数组为\n");
-    for (int i = 0; i < m * n; i++) {
-        if (i % n == 0 && i != 0)
-            printf("\n");
 
-        A[i] = 1;
-        printf("%2.0f", A[i]);
+#include "eigensgemm.h"
+#include "mkldgemm.h"
+#include "randgen.h"
+#include "vmv.h"
+#include "zgemv.h"
+void printgemm(int r, int i, int c) {
+    printf_s("Rows of A:%d, Cols of A:%d\nRows of B:%d, Cols of B:%d ", r, i, i, c);
     }
-    printf("\n");
-    printf("向量1为\n");
-    for (int i = 0; i < m; i++)
-    {
-        B[i] = i + 1;
-        printf("%2.0f", B[i]);
+void printmv(int r, int c) {
+    printf_s("Rows of A:%d, Cols of A:%d\n", r, c);
     }
-    printf("\n");
-    printf("向量2为\n");
-    for (int i = 0; i < n; i++)
-    {
-        C[i] = i + 2;
-        printf("%2.0f", C[i]);
+void printvv(int len) {
+    printf_s("Length of a and b:%d\n",len);
     }
-    printf("\n");
-    cblas_sger(CblasRowMajor, m, n, a, B, 1, C, 1, A, n);
-    printf("向量-向量相乘+矩阵的结果\n");
-    for (int i = 0; i < m * n; i++) {
-        if (i % n == 0 && i != 0)
-            printf("\n");
+int main(int argc, char *argv[]) {
+    int turns = 10, rows = 0, cols = 0, interm = 0;
+    randinit();
+    for (int i = 0; i <= turns; i++) {
+        LARGE_INTEGER t1, t2, tc;
+        QueryPerformanceFrequency(&tc);
+        QueryPerformanceCounter(&t1);
 
-        printf("%2.0f ", A[i]);
-    }
-    mkl_free(A);
-    mkl_free(B);
-    mkl_free(C);
+        rows = 500 + 200 * i;
+        cols = rows;
+        interm = (int) randgen(2000, 3000);
+        mkldgemm(rows, cols, interm);  //需计时的函数
+        printgemm(rows, interm, cols);
+
+        QueryPerformanceCounter(&t2);
+        double time = (double) (t2.QuadPart - t1.QuadPart) / (double) tc.QuadPart;
+        printf_s("time=%f ms\n", time * (double) 1000);
+        }
     getchar();
     return 0;
-}
+    }

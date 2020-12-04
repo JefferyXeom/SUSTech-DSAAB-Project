@@ -84,7 +84,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <VcpkgEnabled>false</VcpkgEnabled>
+    <VcpkgEnabled>true</VcpkgEnabled>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,6 +122,10 @@
       <ConformanceMode>true</ConformanceMode>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
+      <LlvmTransitionalOption>NextGenComprehensiveDiagnostics</LlvmTransitionalOption>
+      <EnableExpandedLineNumberInfo>true</EnableExpandedLineNumberInfo>
+      <CCppSupport>Cpp17Support</CCppSupport>
+      <AdditionalIncludeDirectories>D:\CS203B\Project\eigen-3.3.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +150,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blas.cpp" />
+    <ClCompile Include="eigensgemm.cpp" />
+    <ClCompile Include="mkldgemm.cpp" />
+    <ClCompile Include="randgen.cpp" />
+    <ClCompile Include="vmv.cpp" />
+    <ClCompile Include="zgemv.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="eigensgemm.h" />
+    <ClInclude Include="randgen.h" />
+    <ClInclude Include="vmv.h" />
+    <ClInclude Include="zgemv.h" />
+    <ClInclude Include="mkldgemm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,5 +18,37 @@
     <ClCompile Include="blas.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="vmv.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="randgen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="zgemv.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="eigensgemm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mkldgemm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vmv.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="randgen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zgemv.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="eigensgemm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mkldgemm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
