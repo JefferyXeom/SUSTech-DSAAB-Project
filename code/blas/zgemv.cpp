@@ -18,7 +18,7 @@ int zgemv(int rows,int cols) {
         a[i] = Comp(randgen(i*-234,i*628)*0.78*i, randgen(i*-729,i*133) + 2*34.5*i);
         }
     // 做乘法
-    cblas_zgemv(CblasColMajor, CblasNoTrans, Nr, Nc, &alpha, a,
+    cblas_zgemv(CblasRowMajor, CblasNoTrans, Nr, Nc, &alpha, a,
         Nr, x, 1, &beta, y, 1);
 
     free(a);
