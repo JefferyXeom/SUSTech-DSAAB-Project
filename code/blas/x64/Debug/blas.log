@@ -3429,23 +3429,29 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\stdio.h(2100): 
 D:\CS203B\Project\code\blas\blas.cpp(33): warning C5045: 如果指定了 /Qspectre 开关，编译器会插入内存负载的 Spectre 缓解
   D:\CS203B\Project\code\blas\blas.cpp(24) : 注意: 在此行上通过对比检查索引 "i" 范围
   D:\CS203B\Project\code\blas\blas.cpp(33) : 注意: 此行上的源调用
+  LINK : 没有找到 D:\CS203B\Project\code\blas\x64\Debug\blas.exe 或上一个增量链接没有生成它；正在执行完全链接
+zgemv.obj : warning LNK4204: “D:\CS203B\Project\code\blas\x64\Debug\vc142.pdb”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
+vmv.obj : warning LNK4204: “D:\CS203B\Project\code\blas\x64\Debug\vc142.pdb”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
+randgen.obj : warning LNK4204: “D:\CS203B\Project\code\blas\x64\Debug\vc142.pdb”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
+mkldgemm.obj : warning LNK4204: “”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
+eigensgemm.obj : warning LNK4204: “D:\CS203B\Project\code\blas\x64\Debug\vc142.pdb”缺少引用模块的调试信息；正在链接对象，如同没有调试信息一样
   blas.vcxproj -> D:\CS203B\Project\code\blas\x64\Debug\blas.exe
 
 项目性能摘要:
-     5384 毫秒 D:\CS203B\Project\code\blas\blas.vcxproj   1 次调用
-               5384 毫秒 Build                                      1 次调用
+     8555 毫秒 D:\CS203B\Project\code\blas\blas.vcxproj   1 次调用
+               8555 毫秒 Build                                      1 次调用
 
 目标性能摘要:
         0 毫秒 _ResourceCompile                           1 次调用
+        0 毫秒 _Link                                      1 次调用
+        0 毫秒 AfterLink                                  1 次调用
         0 毫秒 SetLinkLibMKLEnvironment                   1 次调用
+        0 毫秒 ComputeLinkSwitches                        1 次调用
         0 毫秒 PreLinkEvent                               1 次调用
-        0 毫秒 DoLinkOutputFilesMatch                     1 次调用
         0 毫秒 PrepareResourceNames                       1 次调用
         0 毫秒 CreateCustomManifestResourceNames          1 次调用
-        0 毫秒 SplitResourcesByCulture                    1 次调用
         0 毫秒 ComputeManifestInputsTargets               1 次调用
         0 毫秒 ComputeLinkInputsFromProject               1 次调用
-        0 毫秒 ComputeCLGeneratedLinkInputs               1 次调用
         0 毫秒 ComputeManifestGeneratedLinkerInputs       1 次调用
         0 毫秒 ComputeRCGeneratedLinkInputs               1 次调用
         0 毫秒 ComputeRCOutputs                           1 次调用
@@ -3456,14 +3462,15 @@ D:\CS203B\Project\code\blas\blas.cpp(33): warning C5045: 如果指定了 /Qspect
         0 毫秒 _BuildCompileAction                        1 次调用
         0 毫秒 AfterBuildCompileEvent                     1 次调用
         0 毫秒 AfterResourceCompile                       1 次调用
-        0 毫秒 MakeDirsForResourceCompile                 1 次调用
         0 毫秒 BeforeResourceCompile                      1 次调用
         0 毫秒 _ClCompile                                 1 次调用
         0 毫秒 AfterClCompile                             1 次调用
-        0 毫秒 AfterLink                                  1 次调用
         0 毫秒 CheckIntelEnvironmentForVCLibsMKL          1 次调用
-        0 毫秒 _Link                                      1 次调用
+        0 毫秒 _ALink                                     1 次调用
+        0 毫秒 VcpkgCheckManifestRoot                     1 次调用
         0 毫秒 _Manifest                                  1 次调用
+        0 毫秒 ResolvedXDCMake                            1 次调用
+        0 毫秒 IncrementalClean                           1 次调用
         0 毫秒 AfterBuild                                 1 次调用
         0 毫秒 BuildLink                                  1 次调用
         0 毫秒 _BuildLinkAction                           1 次调用
@@ -3485,105 +3492,104 @@ D:\CS203B\Project\code\blas\blas.cpp(33): warning C5045: 如果指定了 /Qspect
         0 毫秒 ComputeCLCompileGeneratedSbrFiles          1 次调用
         0 毫秒 _XdcMake                                   1 次调用
         0 毫秒 MakeDirsForXdcMake                         1 次调用
-        0 毫秒 ResolvedXDCMake                            1 次调用
+        0 毫秒 ComputeCLCompileGeneratedXDCFiles          1 次调用
         0 毫秒 RegisterOutput                             1 次调用
-        0 毫秒 _ALink                                     1 次调用
-        0 毫秒 VcpkgCheckManifestRoot                     1 次调用
-        0 毫秒 Build                                      1 次调用
-        0 毫秒 PreBuildEvent                              1 次调用
-        0 毫秒 MakeDirsForMidl                            1 次调用
-        0 毫秒 _Xsd                                       1 次调用
-        0 毫秒 GetFrameworkPaths                          1 次调用
-        0 毫秒 AssignProjectConfiguration                 1 次调用
-        0 毫秒 _SplitProjectReferencesByFileExistence     1 次调用
-        0 毫秒 SelectCustomBuild                          1 次调用
-        0 毫秒 _SelectedFiles                             1 次调用
         0 毫秒 VcpkgTripletSelection                      1 次调用
-        0 毫秒 ComputeMIDLGeneratedCompileInputs          1 次调用
-        0 毫秒 BeforeBuildGenerateSources                 1 次调用
-        0 毫秒 ResolveReferences                          1 次调用
-        0 毫秒 AfterResolveReferences                     1 次调用
-        0 毫秒 ResolveAssemblyReferences                  1 次调用
-        0 毫秒 ExpandSDKReferences                        1 次调用
-        0 毫秒 ResolveSDKReferences                       1 次调用
-        0 毫秒 PrepareProjectReferences                   1 次调用
-        0 毫秒 _CheckWindowsSDKInstalled                  1 次调用
-        0 毫秒 SetBuildDefaultEnvironmentVariables        1 次调用
-        0 毫秒 BuildGenerateSourcesTraverse               1 次调用
-        0 毫秒 AfterMidl                                  1 次调用
-        0 毫秒 BeforeResolveReferences                    1 次调用
-        0 毫秒 ComputeCLInputPDBName                      1 次调用
-        0 毫秒 _Midl                                      1 次调用
-        0 毫秒 ComputeReferenceCLInput                    1 次调用
-        0 毫秒 GetReferencedVCProjectsInfo                1 次调用
-        0 毫秒 FindReferenceAssembliesForReferences       1 次调用
-        0 毫秒 CheckInstalledVCLibsIPP                    1 次调用
-        0 毫秒 BeforeClCompile                            1 次调用
-        0 毫秒 SetTelemetryEnvironmentVariables           1 次调用
-        0 毫秒 BuildCompileTraverse                       1 次调用
-        0 毫秒 BuildGenerateSources                       1 次调用
-        0 毫秒 _BuildGenerateSourcesAction                1 次调用
-        0 毫秒 MakeDirsForCl                              1 次调用
-        0 毫秒 SelectClCompile                            1 次调用
-        0 毫秒 AfterBuildGenerateSourcesEvent             1 次调用
+        0 毫秒 Build                                      1 次调用
+        0 毫秒 SelectCustomBuild                          1 次调用
         0 毫秒 AfterBuildGenerateSources                  1 次调用
+        0 毫秒 _Midl                                      1 次调用
+        0 毫秒 ResolveAssemblyReferences                  1 次调用
+        0 毫秒 AfterResolveReferences                     1 次调用
+        0 毫秒 AfterMidl                                  1 次调用
+        0 毫秒 ComputeMIDLGeneratedCompileInputs          1 次调用
         0 毫秒 _PrepareForBuild                           1 次调用
-        1 毫秒 _CleanGetCurrentAndPriorFileWrites         1 次调用
-        1 毫秒 ComputeCLCompileGeneratedXDCFiles          1 次调用
+        0 毫秒 ResolveReferences                          1 次调用
+        0 毫秒 _Xsd                                       1 次调用
+        0 毫秒 _SplitProjectReferencesByFileExistence     1 次调用
+        0 毫秒 BeforeBuildGenerateSources                 1 次调用
+        0 毫秒 ComputeCustomBuildOutput                   1 次调用
+        0 毫秒 CheckInstalledVCLibsMKL                    1 次调用
+        0 毫秒 _SelectedFiles                             1 次调用
+        0 毫秒 MakeDirsForMidl                            1 次调用
+        0 毫秒 ResolveSDKReferences                       1 次调用
+        0 毫秒 ExpandSDKReferences                        1 次调用
+        0 毫秒 _BuildGenerateSourcesAction                1 次调用
+        0 毫秒 CheckInstalledVCLibsIPP                    1 次调用
+        0 毫秒 SelectClCompile                            1 次调用
+        0 毫秒 PrepareProjectReferences                   1 次调用
+        0 毫秒 BeforeResolveReferences                    1 次调用
+        0 毫秒 AfterBuildGenerateSourcesEvent             1 次调用
+        0 毫秒 GetReferenceAssemblyPaths                  1 次调用
+        0 毫秒 GetFrameworkPaths                          1 次调用
+        0 毫秒 GetResolvedWinMD                           1 次调用
+        0 毫秒 FindReferenceAssembliesForReferences       1 次调用
+        0 毫秒 ComputeCLInputPDBName                      1 次调用
+        0 毫秒 BeforeClCompile                            1 次调用
+        0 毫秒 SetCABuildNativeEnvironmentVariables       1 次调用
+        0 毫秒 BuildGenerateSources                       1 次调用
+        0 毫秒 ComputeReferenceCLInput                    1 次调用
+        0 毫秒 PreBuildEvent                              1 次调用
+        1 毫秒 MakeDirsForResourceCompile                 1 次调用
         1 毫秒 _GetProjectReferenceTargetFrameworkProperties   1 次调用
-        1 毫秒 ComputeCLOutputs                           1 次调用
-        1 毫秒 SatelliteDllsProjectOutputGroup            1 次调用
-        1 毫秒 ComputeLinkImportLibraryOutputsForClean    1 次调用
-        1 毫秒 IncrementalClean                           1 次调用
-        1 毫秒 GetCopyToOutputDirectoryItems              1 次调用
-        1 毫秒 CopyFileToFolders                          1 次调用
-        1 毫秒 _GetCopyToOutputDirectoryItemsFromThisProject   1 次调用
-        1 毫秒 ResolveProjectReferences                   1 次调用
-        1 毫秒 GetResolvedWinMD                           1 次调用
-        1 毫秒 AssignTargetPaths                          1 次调用
-        1 毫秒 FixupCLCompileOptions                      1 次调用
-        1 毫秒 GetReferenceAssemblyPaths                  1 次调用
-        1 毫秒 ContentFilesProjectOutputGroup             1 次调用
-        1 毫秒 SetCABuildNativeEnvironmentVariables       1 次调用
         1 毫秒 MakeDirsForLink                            1 次调用
-        1 毫秒 ComputeCustomBuildOutput                   1 次调用
-        1 毫秒 CheckInstalledVCLibsMKL                    1 次调用
+        1 毫秒 CopyFileToFolders                          1 次调用
         1 毫秒 _PrepareForReferenceResolution             1 次调用
-        1 毫秒 CreateRecipeFile                           1 次调用
-        2 毫秒 CustomBuild                                1 次调用
-        2 毫秒 InitializeBuildStatus                      1 次调用
-        2 毫秒 _CheckForInvalidConfigurationAndPlatform   1 次调用
+        1 毫秒 ComputeLinkImportLibraryOutputsForClean    1 次调用
+        1 毫秒 ContentFilesProjectOutputGroup             1 次调用
+        1 毫秒 BuildGenerateSourcesTraverse               1 次调用
+        1 毫秒 _GetCopyToOutputDirectoryItemsFromThisProject   1 次调用
+        1 毫秒 SetBuildDefaultEnvironmentVariables        1 次调用
+        1 毫秒 ComputeCLOutputs                           1 次调用
+        1 毫秒 BuildCompileTraverse                       1 次调用
+        1 毫秒 ComputeCLGeneratedLinkInputs               1 次调用
+        1 毫秒 DoLinkOutputFilesMatch                     1 次调用
+        1 毫秒 GetReferencedVCProjectsInfo                1 次调用
+        1 毫秒 _CheckWindowsSDKInstalled                  1 次调用
+        2 毫秒 GetCopyToOutputDirectoryItems              1 次调用
+        2 毫秒 SatelliteDllsProjectOutputGroup            1 次调用
         2 毫秒 FinalizeBuildStatus                        1 次调用
-        2 毫秒 CopyFilesToOutputDirectory                 1 次调用
-        3 毫秒 ComputeLinkSwitches                        1 次调用
-        3 毫秒 PrepareForBuild                            1 次调用
-        6 毫秒 WarnCompileDuplicatedFilename              1 次调用
-       82 毫秒 SetVCMKLEnvironment                        1 次调用
-      215 毫秒 Link                                       1 次调用
-     1021 毫秒 AppLocalFromInstalled                      1 次调用
-     4018 毫秒 ClCompile                                  1 次调用
+        2 毫秒 FixupCLCompileOptions                      1 次调用
+        2 毫秒 AssignTargetPaths                          1 次调用
+        2 毫秒 SplitResourcesByCulture                    1 次调用
+        2 毫秒 AssignProjectConfiguration                 1 次调用
+        3 毫秒 MakeDirsForCl                              1 次调用
+        3 毫秒 WarnCompileDuplicatedFilename              1 次调用
+        5 毫秒 SetTelemetryEnvironmentVariables           1 次调用
+        6 毫秒 CopyFilesToOutputDirectory                 1 次调用
+        7 毫秒 CustomBuild                                1 次调用
+       10 毫秒 PrepareForBuild                            1 次调用
+       12 毫秒 _CleanGetCurrentAndPriorFileWrites         1 次调用
+       16 毫秒 CreateRecipeFile                           1 次调用
+       18 毫秒 _CheckForInvalidConfigurationAndPlatform   1 次调用
+       20 毫秒 ResolveProjectReferences                   1 次调用
+       97 毫秒 InitializeBuildStatus                      1 次调用
+      403 毫秒 SetVCMKLEnvironment                        1 次调用
+     1441 毫秒 AppLocalFromInstalled                      1 次调用
+     1817 毫秒 Link                                       1 次调用
+     4666 毫秒 ClCompile                                  1 次调用
 
 任务性能摘要:
-        0 毫秒 Message                                    7 次调用
-        0 毫秒 SetEnv                                     8 次调用
-        0 毫秒 AssignProjectConfiguration                 1 次调用
-        0 毫秒 MSBuild                                    1 次调用
+        0 毫秒 Delete                                     2 次调用
         0 毫秒 ConvertToAbsolutePath                      1 次调用
-        0 毫秒 CreateItem                                 2 次调用
-        0 毫秒 AssignCulture                              1 次调用
-        0 毫秒 RemoveDuplicates                           2 次调用
-        1 毫秒 FindUnderPath                              5 次调用
+        0 毫秒 MSBuild                                    1 次调用
+        1 毫秒 WriteLinesToFile                           2 次调用
+        1 毫秒 MakeDir                                   10 次调用
         1 毫秒 CallTarget                                 2 次调用
-        1 毫秒 AssignTargetPath                           7 次调用
-        1 毫秒 Copy                                       1 次调用
-        1 毫秒 Delete                                     2 次调用
-        1 毫秒 GenerateDesktopDeployRecipe                1 次调用
-        1 毫秒 ReadLinesFromFile                          3 次调用
+        1 毫秒 CreateItem                                 2 次调用
+        1 毫秒 RemoveDuplicates                           2 次调用
         1 毫秒 CheckVCToolsetVersion                      1 次调用
-        2 毫秒 Touch                                      2 次调用
-        2 毫秒 MakeDir                                   10 次调用
-        2 毫秒 WriteLinesToFile                           2 次调用
-        3 毫秒 GetOutOfDateItems                          3 次调用
-      213 毫秒 Link                                       1 次调用
-     1101 毫秒 Exec                                       2 次调用
-     4016 毫秒 CL                                         1 次调用
+        2 毫秒 Message                                    7 次调用
+        2 毫秒 SetEnv                                     8 次调用
+        2 毫秒 AssignTargetPath                           7 次调用
+        2 毫秒 AssignCulture                              1 次调用
+        2 毫秒 AssignProjectConfiguration                 1 次调用
+        2 毫秒 ReadLinesFromFile                          3 次调用
+        5 毫秒 Copy                                       1 次调用
+        8 毫秒 GetOutOfDateItems                          3 次调用
+       10 毫秒 FindUnderPath                              5 次调用
+       16 毫秒 GenerateDesktopDeployRecipe                1 次调用
+       94 毫秒 Touch                                      2 次调用
+     1815 毫秒 Link                                       1 次调用
+     1843 毫秒 Exec                                       2 次调用
+     4664 毫秒 CL                                         1 次调用

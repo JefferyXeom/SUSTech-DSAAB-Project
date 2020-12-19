@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.snippetSuggestions": "bottom",
+		"editor.suggest.snippetsPreventQuickSuggestions": false
+	}
 }

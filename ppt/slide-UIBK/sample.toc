@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{Background}{4}{0}{1}
+\beamer@sectionintoc {2}{Therotical Analysis}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Strassen Algorithm}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Intel MKL}{13}{0}{2}
+\beamer@sectionintoc {3}{Methodology}{16}{0}{3}
+\beamer@sectionintoc {4}{Experiment Results}{18}{0}{4}
+\beamer@sectionintoc {5}{Acknowledgements}{21}{0}{5}
