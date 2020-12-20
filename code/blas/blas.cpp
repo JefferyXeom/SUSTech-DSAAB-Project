@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
         QueryPerformanceFrequency(&tc);
         QueryPerformanceCounter(&t1);
 
-        rows = 5000 + 200* i;
+        rows = 0 + 2 * i;
         cols = rows;
         interm = (int) randgen(2000, 3000);
         mkldgemm(rows, cols, interm);  //需计时的函数
