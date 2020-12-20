@@ -1,12 +1,33 @@
+import java.util.Arrays;
+import java.util.Objects;
 
 // this includes all the method we need here
 public class MatrixMethod {
-
+    private static boolean extended = false;
 
     // construction
     public MatrixMethod() {
     }
 
+    public static boolean getExtended(){
+        return extended;
+    }
+
+    public static boolean testAccuracy(Matrix A){
+        double[] AA=A.getMatrix();
+        System.out.println(AA.length);
+        int n=(int)Math.sqrt(AA.length);
+        System.out.println(n);
+        int count=0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if(AA[i*n+j]==0)
+                    count++;
+            }
+        }
+        System.out.println(count);
+        return count - n * n<=n*n*0.2;
+    }
 
     // naiveAdd method
     public static Matrix Add(Matrix A, Matrix B) {
@@ -34,7 +55,7 @@ public class MatrixMethod {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 C[i * n + j] = A[i * n + j] - B[i * n + j];
-                if (Math.abs(C[i * n + j]) < 0.0000001)
+                if (Math.abs(C[i * n + j]) < 0.00000000001)
                     C[i * n + j] = 0;
             }
 
@@ -60,12 +81,134 @@ public class MatrixMethod {
         return C;
     }
 
+
+    // is square test
+    private static boolean isSquare(int num) {
+        double res = Math.sqrt(num);
+        int chk = (int) res;
+        return Math.abs(res - (double) chk) <= 0.00000001;
+    }
+
+
+    private static int[] getK(int N) {
+        int k = 0;
+        while (N % 2 == 0) {
+            k++;
+            N = N / 2;
+        }
+        return new int[]{k, N};
+    }
+
+    static boolean isStandard(int num) {
+        return isSquare(num) && getK(num)[1] == 1;
+    }
+
     // stranssen multiple method
     public static Matrix stranssenMultiple(Matrix A, Matrix B) throws Exception {
-        return new Matrix(stranssenMultiples(A.getMatrix(), B.getMatrix()));
+
+        int n = A.getMatrix().length; // A and B have the same length
+        if (isStandard(n)) {
+            return new Matrix(standardStranssenMultiples(A.getMatrix(), B.getMatrix()));
+        } else if ((int) Math.sqrt(n) % 2 == 0) {
+            return new Matrix((stranssenMultiples(A.getMatrix(), B.getMatrix())));
+        } else {
+            double[] AA = matrixExtension(A.getMatrix());
+            double[] BB = matrixExtension(B.getMatrix());
+//            System.out.println(Arrays.toString(AA));
+//            System.out.println(Arrays.toString(BB));
+            return new Matrix(stranssenMultiples(AA, BB));
+        }
+
+    }
+
+    private static double[] matrixExtension(double[] A) {
+        int n = A.length;
+        int m = (int) Math.sqrt(n);
+        double[] AA = new double[(m + 1) * (m + 1)];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                AA[i * (m + 1) + j] = A[i * m + j];
+            }
+            AA[(i + 1) * (m + 1)] = 0;
+        }
+        for (int i = 0; i < m + 1; i++) {
+            AA[m * (m + 1) + i] = 0;
+        }
+        extended = true;
+        return AA;
+    }
+
+    private static double[] matrixShrink(double[] A) {
+        int n = A.length;
+        int m = (int) Math.sqrt(n);
+        double[] AA = new double[(m - 1) * (m - 1)];
+        for (int i = 0; i < m - 1; i++) {
+            for (int j = 0; j < m - 1; j++) {
+                AA[i * (m - 1) + j] = A[i * m + j];
+            }
+        }
+        extended = false;
+        return AA;
     }
 
     private static double[] stranssenMultiples(double[] A, double[] B) throws Exception {
+        int[] splits = getK(A.length);// A and B have the same length
+        int k = splits[0];//2
+        int m = (int) Math.sqrt(splits[1]);//3
+//        System.out.println(A.length + " " + k + " " + m);
+
+
+        Object[] NA = new Object[m * m];
+        Object[] NB = new Object[m * m];
+        Object[] NC = new Object[m * m];
+
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                double[] MA = new double[k * k];
+                double[] MB = new double[k * k];
+                for (int l = 0; l < k; l++) {
+                    for (int o = 0; o < k; o++) {
+                        MA[l * k + o] = A[(i * k + l) * k * m + j * k + o];
+                        MB[l * k + o] = B[(i * k + l) * k * m + j * k + o];
+                    }
+                }
+                NA[i * m + j] = MA;
+                NB[i * m + j] = MB;
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                double[] MC = new double[k * k];
+                for (int p = 0; p < m; p++) {
+                    double[] MA = (double[]) NA[i * m + p];
+                    double[] MB = (double[]) NB[p * m + j];
+                    MC = naiveAdd(MC, standardStranssenMultiples(MA, MB));
+                }
+                NC[i * m + j] = MC;
+            }
+        }
+
+
+        double[] C = new double[A.length];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < m; j++) {
+                double[] MC = (double[]) NC[i * m + j];
+                for (int l = 0; l < k; l++) {
+                    for (int o = 0; o < k; o++) {
+                        C[(i * k + l) * k * m + (j * k) + o] = MC[l * k + o];
+                    }
+                }
+            }
+        }
+        if (extended)
+            return matrixShrink(C);
+        else
+            return C;
+    }
+
+
+    private static double[] standardStranssenMultiples(double[] A, double[] B) throws Exception {
         int n = (int) Math.sqrt(A.length);
         double[] C = new double[A.length];
 
@@ -97,13 +240,13 @@ public class MatrixMethod {
         S[9] = naiveAdd(B11, B12);
 
         double[][] P = new double[7][m * m];
-        P[0] = stranssenMultiples(A11, S[0]);
-        P[1] = stranssenMultiples(S[1], B22);
-        P[2] = stranssenMultiples(S[2], B11);
-        P[3] = stranssenMultiples(A22, S[3]);
-        P[4] = stranssenMultiples(S[4], S[5]);
-        P[5] = stranssenMultiples(S[6], S[7]);
-        P[6] = stranssenMultiples(S[8], S[9]);
+        P[0] = standardStranssenMultiples(A11, S[0]);
+        P[1] = standardStranssenMultiples(S[1], B22);
+        P[2] = standardStranssenMultiples(S[2], B11);
+        P[3] = standardStranssenMultiples(A22, S[3]);
+        P[4] = standardStranssenMultiples(S[4], S[5]);
+        P[5] = standardStranssenMultiples(S[6], S[7]);
+        P[6] = standardStranssenMultiples(S[8], S[9]);
 
         double[] C11 = naiveAdd(naiveMinus(naiveAdd(P[3], P[4]), P[1]), P[5]);
         double[] C12 = naiveAdd(P[0], P[1]);

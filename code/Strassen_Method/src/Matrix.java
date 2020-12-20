@@ -10,6 +10,7 @@ public class Matrix {
         row = n;
         col = n;
         Random random = new Random();
+
         matrix = new double[n * n];
         for (int i = 0; i < n * n; i++) {
             matrix[i] = isFilled ? random.nextDouble() : 0;
@@ -19,17 +20,11 @@ public class Matrix {
 
     // generate matrix by desired 1-D array
     public Matrix(double[] matrix) {
-        if (isSquare(matrix.length)) {
             this.matrix = matrix;
-        }
     }
 
-    // is square test
-    private static boolean isSquare(int num) {
-        double res = Math.sqrt(num);
-        int chk = (int) res;
-        return Math.abs(res - (double) chk) <= 0.00000001;
-    }
+
+
 
 
     // return the double[] array for each matrix
