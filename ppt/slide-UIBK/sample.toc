@@ -10,4 +10,4 @@
 \beamer@subsectionintoc {5}{1}{Cache Alignement}{19}{0}{5}
 \beamer@subsectionintoc {5}{2}{Intel MKL}{23}{0}{5}
 \beamer@sectionintoc {6}{Acknowledgements}{29}{0}{6}
-\beamer@subsectionintoc {6}{1}{GitHub Site of the Project}{30}{0}{6}
+\beamer@subsectionintoc {6}{1}{Project Management}{30}{0}{6}
