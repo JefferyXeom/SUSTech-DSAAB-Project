@@ -47,11 +47,12 @@
     <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>Intel C++ Compiler 19.1</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <UseIntelMKL>Parallel</UseIntelMKL>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -140,6 +141,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <AdditionalIncludeDirectories>D:\JAVA\jdk\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LlvmTransitionalOption>NextGenComprehensiveDiagnostics</LlvmTransitionalOption>
+      <Optimization>MaxSpeedHighLevel</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableMatrixMultiplyLibraryCall>Yes</EnableMatrixMultiplyLibraryCall>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <GenerateAlternateCodePaths>COFFEELAKE</GenerateAlternateCodePaths>
+      <UseProcessorExtensions>COFFEELAKE</UseProcessorExtensions>
+      <Mtune>Coffeelake</Mtune>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,12 +165,14 @@
     <ClCompile Include="eigensgemm.cpp" />
     <ClCompile Include="mkldgemm.cpp" />
     <ClCompile Include="randgen.cpp" />
+    <ClCompile Include="Strassen.cpp" />
     <ClCompile Include="vmv.cpp" />
     <ClCompile Include="zgemv.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="eigensgemm.h" />
     <ClInclude Include="randgen.h" />
+    <ClInclude Include="Strassen.h" />
     <ClInclude Include="vmv.h" />
     <ClInclude Include="zgemv.h" />
     <ClInclude Include="mkldgemm.h" />

@@ -1,7 +1,13 @@
 \BOOKMARK [2][]{Outline0.1}{Background}{}% 1
 \BOOKMARK [2][]{Outline0.2}{Therotical\040Analysis}{}% 2
-\BOOKMARK [3][]{Outline0.2.1.8}{Strassen\040Algorithm}{Outline0.2}% 3
-\BOOKMARK [3][]{Outline0.2.2.13}{Intel\040MKL}{Outline0.2}% 4
+\BOOKMARK [3][]{Outline0.2.1.7}{Brute-Force\040Algorithm}{Outline0.2}% 3
+\BOOKMARK [3][]{Outline0.2.2.9}{Strassen\040Algorithm}{Outline0.2}% 4
 \BOOKMARK [2][]{Outline0.3}{Methodology}{}% 5
 \BOOKMARK [2][]{Outline0.4}{Experiment\040Results}{}% 6
-\BOOKMARK [2][]{Outline0.5}{Acknowledgements}{}% 7
+\BOOKMARK [3][]{Outline0.4.1.15}{Native\040Implementation\040of\040Strassen\040Algorithm\040using\040C++}{Outline0.4}% 7
+\BOOKMARK [3][]{Outline0.4.2.16}{Strassen\040Algorithm\040with\040Minimun\040Size\040Threshold}{Outline0.4}% 8
+\BOOKMARK [2][]{Outline0.5}{Hardware\040Optimization}{}% 9
+\BOOKMARK [3][]{Outline0.5.1.19}{Cache\040Alignement}{Outline0.5}% 10
+\BOOKMARK [3][]{Outline0.5.2.23}{Intel\040MKL}{Outline0.5}% 11
+\BOOKMARK [2][]{Outline0.6}{Acknowledgements}{}% 12
+\BOOKMARK [3][]{Outline0.6.1.30}{GitHub\040Site\040of\040the\040Project}{Outline0.6}% 13

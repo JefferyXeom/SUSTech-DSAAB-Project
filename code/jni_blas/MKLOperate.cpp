@@ -1,9 +1,11 @@
 ﻿// dllmain.cpp : 定义 DLL 应用程序的入口点。
 #include "pch.h"
 #include "MKLOperate.h"
+
+#include <win32/jni_md.h>
 using namespace std;
 
-JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklAdd(JNIEnv *env, jobject jobj, jdoubleArray mat1, jdoubleArray mat2)
+JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklMultiple(JNIEnv *env, jobject jobj, jdoubleArray mat1, jdoubleArray mat2)
 {
     double *A, *B, *C;
     int a = 1, b = 0;
@@ -36,7 +38,7 @@ JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklAdd(JNIEnv *env, jobject jobj,
     C = nullptr;
     return result;
 }
-JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklMultiple(JNIEnv *env, jobject obj, jdoubleArray mat1, jdoubleArray mat2)
+JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklAdd(JNIEnv *env, jobject obj, jdoubleArray mat1, jdoubleArray mat2)
 {
     int length = env->GetArrayLength(mat1);
     jdoubleArray result = env->NewDoubleArray(length);
@@ -53,5 +55,21 @@ JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklMultiple(JNIEnv *env, jobject 
     free(Res);
     Res = nullptr;
     return result;
-    
 }
+JNIEXPORT jdoubleArray JNICALL Java_MKLOperate_mklMinus(JNIEnv *env, jobject obj, jdoubleArray mat1, jdoubleArray mat2) {
+    int length = env->GetArrayLength(mat1);
+    jdoubleArray result = env->NewDoubleArray(length);
+    double *Matr1 = env->GetDoubleArrayElements(mat1, NULL);
+    double *Matr2 = env->GetDoubleArrayElements(mat2, NULL);
+    double *Res = (double *) malloc(length * sizeof(double));
+    for (int i = 0; i < length; ++i) {
+        Res[i] = Matr1[i] - Matr2[i];
+        }
+    env->SetDoubleArrayRegion(result, 0, length, Res);
+    env->ReleaseDoubleArrayElements(mat1, Matr1, JNI_COMMIT);
+    env->ReleaseDoubleArrayElements(mat2, Matr2, JNI_COMMIT);
+    free(Res);
+    Res = nullptr;
+    return result;
+
+    }

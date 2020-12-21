@@ -1,26 +1,29 @@
-\frametitle{Strassen Algorithm}
+\frametitle{C++ Test of double MM}
+
   \begin{lstlisting}
-  // CONQUER: here we calculate P1...P7 matrices
-      P1 <- STRASSEN(A11, B12-B22)          //P1=A11(B12-B22)
-      P2 <- STRASSEN(A11+A12, B22)          //P2=(A11+A12)B22
-      P3 <- STRASSEN(A21+A22, B11)          //P3=(A21+A22)B11
-      P4 <- STRASSEN(A22, B21-B11)          //P4=A22(B21-B11)
-      P5 <- STRASSEN(A11+A22, B11+B22)      //P5=(A11+A22)(B11+B22)
-      P6 <- STRASSEN(A12-A22, B21+B22)      //P6=(A12-A22)(B21+B22)
-      P7 <- STRASSEN(A11-A21, B11+B12)      //P7=(A11-A21)(B11+B12)
-
-        // calculate the result submatrices
-      C11  <-  P5 + P4 - P2 + P6
-      C12  <-  P1 + P2
-      C21  <-  P3 + P4
-      C22  <-  P5 + P1 - P3 - P7
-
-        // MERGE: put them together and make our resulting Matrix
-      for i  <-  0  to  N/2
-         for j  <-  0  to  N/2
-           MatrixResult[i][j]              <-  C11[i][j]
-           MatrixResult[i][j + N/2]        <-  C12[i][j]
-           MatrixResult[i + N/2][j]        <-  C21[i][j]
-           MatrixResult[i + N/2][j + N/2]  <-  C22[i][j]
-      return MatrixResult
+  int mkldgemm(int rowa, int cola, int colb) {
+  using namespace std;
+  double *A, *B, *C;
+  int a = 1, b = 1;
+  A = (double *) MKL_malloc(rowa * cola * sizeof(double), 64);
+  B = (double *) MKL_malloc(cola * colb * sizeof(double), 64);
+  C = (double *) MKL_malloc(rowa * colb * sizeof(double), 64);
+  for (int i = 0; i < rowa * cola; ++i) {
+      A[i] = randgen(-500, 500);
+      }
+  for (int i = 0; i < cola * colb; ++i) {
+      B[i] = randgen(-500, 500);
+      }
+  for (int i = 0; i < rowa * colb; ++i) {
+      C[i] = randgen(-650, 390) * randgen(-500, 500);
+      }
+  cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+    rowa, colb, cola, 1, A, cola,
+    B, colb, b, C, colb);
+  MKL_free(A);
+  MKL_free(B);
+  MKL_free(C);
+  return 0;
+  }
 \end{lstlisting}
+

@@ -33,6 +33,9 @@
     <ClCompile Include="mkldgemm.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Strassen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vmv.h">
@@ -48,6 +51,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="mkldgemm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Strassen.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
