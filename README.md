@@ -9,3 +9,5 @@
 `./ppt`:contains the beamer sildes and its source file.
 
 All the examples are configured in the three folders.
+
+Source of the **Eigen** library used in this project: [Eigen][http://eigen.tuxfamily.org/]
