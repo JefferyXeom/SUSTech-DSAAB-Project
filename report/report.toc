@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{}%
+\contentsline {section}{\numberline {2}Background}{1}{}%
+\contentsline {section}{\numberline {3}Therotical Analysis}{1}{}%
+\contentsline {subsection}{\numberline {3.1}Brute-Force Algorithm}{2}{}%
+\contentsline {subsection}{\numberline {3.2}Strassen Algorithm}{2}{}%
+\contentsline {subsection}{\numberline {3.3}Moreover on Algorithm-Only Optimizations}{3}{}%
+\contentsline {subsection}{\numberline {3.4}Cache Alignement}{3}{}%
+\contentsline {subsection}{\numberline {3.5}SIMD instructions and BLAS Library}{4}{}%
+\contentsline {section}{\numberline {4}Methodology and Experiment Design}{5}{}%
+\contentsline {subsection}{\numberline {4.1}Benchmark and Fitting code}{5}{}%
+\contentsline {paragraph}{Benchmark code}{5}{}%
+\contentsline {paragraph}{Python fitting code}{6}{}%
+\contentsline {subsection}{\numberline {4.2}Code implements of 11 experiments and optimizations}{6}{}%
+\contentsline {section}{\numberline {5}Empirical Analysis}{7}{}%
+\contentsline {section}{\numberline {6}Conclusion}{10}{}%

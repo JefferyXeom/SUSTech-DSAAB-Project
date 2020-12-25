@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{strassen1969gaussian}
+V.~Strassen, ``Gaussian elimination is not optimal,'' {\em Numerische
+  Mathematik}, vol.~13, no.~4, pp.~354--356, 1969.
+
+\bibitem{pan1981new}
+V.~Y. Pan, ``New combinations of methods for the acceleration of matrix
+  multiplications,'' {\em Computers \& Mathematics With Applications}, vol.~7,
+  no.~1, pp.~73--125, 1981.
+
+\bibitem{COPPERSMITH1990251}
+D.~Coppersmith and S.~Winograd, ``Matrix multiplication via arithmetic
+  progressions,'' {\em Journal of Symbolic Computation}, vol.~9, no.~3, pp.~251
+  -- 280, 1990.
+\newblock Computational algebraic complexity editorial.
+
+\bibitem{HARVEY20181}
+D.~Harvey and J.~{van der Hoeven}, ``On the complexity of integer matrix
+  multiplication,'' {\em Journal of Symbolic Computation}, vol.~89, pp.~1 -- 8,
+  2018.
+
+\bibitem{article}
+V.~Williams, ``Breaking the coppersmith-winograd barrier,'' 09 2014.
+
+\bibitem{1401.7714}
+F.~L. Gall, ``Powers of tensors and fast matrix multiplication,'' 2014.
+
+\end{thebibliography}
