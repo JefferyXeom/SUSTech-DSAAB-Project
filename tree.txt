@@ -1,0 +1,310 @@
+Folder PATH listing for volume Data
+Volume serial number is BAE8-FE28
+D:.
+│   .dccache
+│   .gitignore
+│   commit_list.md
+│   data.txt
+│   data_c++_thr=2.txt
+│   data_c++_thr=32_ikj.txt
+│   data_c++_thr=64.txt
+│   data_c++_thr=64_ikj.txt
+│   eigen-3.3.8.zip
+│   proj.code-workspace
+│   README.md
+│   subnaive.txt
+│   tree.txt
+│   阿里巴巴java开发手册.pdf
+│   
+├───.pytest_cache
+│   │   .gitignore
+│   │   CACHEDIR.TAG
+│   │   README.md
+│   │   
+│   └───v
+│       └───cache
+│               stepwise
+│               
+├───.virtual_documents
+│   └───code
+│       └───python
+│               FitTime.ipynb
+│               Untitled.ipynb
+│               
+├───.vscode
+│       settings.json
+│       
+├───code
+│   ├───.idea
+│   │       code.iml
+│   │       misc.xml
+│   │       modules.xml
+│   │       vcs.xml
+│   │       workspace.xml
+│   │       
+│   ├───blas
+│   │   │   blas.aps
+│   │   │   blas.cpp
+│   │   │   blas.sln
+│   │   │   blas.sln.DotSettings.user
+│   │   │   blas.vcxproj
+│   │   │   blas.vcxproj.filters
+│   │   │   blas.vcxproj.user
+│   │   │   eigensgemm.cpp
+│   │   │   eigensgemm.h
+│   │   │   mkldgemm.cpp
+│   │   │   mkldgemm.h
+│   │   │   randgen.cpp
+│   │   │   randgen.h
+│   │   │   Strassen.cpp
+│   │   │   Strassen.h
+│   │   │   vmv.cpp
+│   │   │   vmv.h
+│   │   │   zgemv.cpp
+│   │   │   zgemv.h
+│   │   │   
+│   │   ├───Debug
+│   │   │   └───blas.tlog
+│   │   └───x64
+│   │       ├───Debug
+│   │       │   │   blas.Build.CppClean.log
+│   │       │   │   blas.exe
+│   │       │   │   blas.exe.recipe
+│   │       │   │   blas.ilk
+│   │       │   │   blas.log
+│   │       │   │   blas.obj
+│   │       │   │   blas.pdb
+│   │       │   │   blas.vcxproj.FileListAbsolute.txt
+│   │       │   │   CodeAnalysisResultManifest.txt
+│   │       │   │   eigensgemm.obj
+│   │       │   │   mkldgemm.obj
+│   │       │   │   randgen.obj
+│   │       │   │   RCa01960
+│   │       │   │   Strassen.obj
+│   │       │   │   Strassengemm.obj
+│   │       │   │   vc142.idb
+│   │       │   │   vc142.pdb
+│   │       │   │   vcpkg.applocal.log
+│   │       │   │   vmv.obj
+│   │       │   │   zgemv.obj
+│   │       │   │   
+│   │       │   └───blas.tlog
+│   │       │           blas.lastbuildstate
+│   │       │           blas.write.1u.tlog
+│   │       │           CL.command.1.tlog
+│   │       │           CL.read.1.tlog
+│   │       │           CL.write.1.tlog
+│   │       │           link.command.1.tlog
+│   │       │           link.read.1.tlog
+│   │       │           link.write.1.tlog
+│   │       │           
+│   │       └───Release
+│   │           │   blas.log
+│   │           │   randgen.obj
+│   │           │   Strassengemm.obj
+│   │           │   vc142.pdb
+│   │           │   
+│   │           └───blas.tlog
+│   │                   blas.lastbuildstate
+│   │                   CL.command.1.tlog
+│   │                   CL.read.1.tlog
+│   │                   CL.write.1.tlog
+│   │                   icl-icx.read.1.tlog
+│   │                   icl-mcpcom.read.1.tlog
+│   │                   icl-mcpcom.write.1.tlog
+│   │                   icl.command.1.tlog
+│   │                   icl.read.1.tlog
+│   │                   icl.write.1.tlog
+│   │                   unsuccessfulbuild
+│   │                   xilink-link.read.1.tlog
+│   │                   xilink-link.write.1.tlog
+│   │                   xilink.command.1.tlog
+│   │                   xilink.read.1.tlog
+│   │                   xilink.write.1.tlog
+│   │                   
+│   ├───jni_blas
+│   │   │   framework.h
+│   │   │   jni.h
+│   │   │   jni_blas.sln
+│   │   │   jni_blas.sln.DotSettings.user
+│   │   │   jni_blas.vcxproj
+│   │   │   jni_blas.vcxproj.filters
+│   │   │   jni_blas.vcxproj.user
+│   │   │   MKLOperate.cpp
+│   │   │   MKLOperate.h
+│   │   │   pch.cpp
+│   │   │   pch.h
+│   │   │   
+│   │   ├───Debug
+│   │   │   └───jni_blas.tlog
+│   │   └───x64
+│   │       ├───Debug
+│   │       │   │   jni_blas.dll
+│   │       │   │   jni_blas.dll.recipe
+│   │       │   │   jni_blas.exp
+│   │       │   │   jni_blas.lib
+│   │       │   │   jni_blas.log
+│   │       │   │   jni_blas.pch
+│   │       │   │   jni_blas.pdb
+│   │       │   │   jni_blas.vcxproj.FileListAbsolute.txt
+│   │       │   │   MKLOperate.obj
+│   │       │   │   pch.obj
+│   │       │   │   vc142.idb
+│   │       │   │   vc142.pdb
+│   │       │   │   vcpkg.applocal.log
+│   │       │   │   
+│   │       │   └───jni_blas.tlog
+│   │       │           CL.command.1.tlog
+│   │       │           CL.read.1.tlog
+│   │       │           CL.write.1.tlog
+│   │       │           jni_blas.lastbuildstate
+│   │       │           jni_blas.write.1u.tlog
+│   │       │           link.command.1.tlog
+│   │       │           link.delete.1.tlog
+│   │       │           link.read.1.tlog
+│   │       │           link.write.1.tlog
+│   │       │           
+│   │       └───Release
+│   │           │   jni_blas.Build.CppClean.log
+│   │           │   jni_blas.dll
+│   │           │   jni_blas.dll.recipe
+│   │           │   jni_blas.exp
+│   │           │   jni_blas.iobj
+│   │           │   jni_blas.ipdb
+│   │           │   jni_blas.lib
+│   │           │   jni_blas.log
+│   │           │   jni_blas.pch
+│   │           │   jni_blas.pdb
+│   │           │   jni_blas.vcxproj.FileListAbsolute.txt
+│   │           │   MKLOperate.obj
+│   │           │   pch.obj
+│   │           │   vc142.pdb
+│   │           │   vcpkg.applocal.log
+│   │           │   
+│   │           └───jni_blas.tlog
+│   │                   CL.command.1.tlog
+│   │                   CL.read.1.tlog
+│   │                   CL.write.1.tlog
+│   │                   jni_blas.lastbuildstate
+│   │                   jni_blas.write.1u.tlog
+│   │                   link.command.1.tlog
+│   │                   link.read.1.tlog
+│   │                   link.write.1.tlog
+│   │                   
+│   ├───python
+│   │   │   FitIKJ.py
+│   │   │   FitMKL.py
+│   │   │   FitTime.ipynb
+│   │   │   FitTime.py
+│   │   │   th=2.png
+│   │   │   
+│   │   └───.ipynb_checkpoints
+│   │           FitTime-checkpoint.ipynb
+│   │           
+│   └───Strassen_Method
+│       │   hs_err_pid15056.log
+│       │   hs_err_pid35676.log
+│       │   hs_err_pid36044.log
+│       │   Strassen_Method.iml
+│       │   
+│       ├───.idea
+│       │   │   misc.xml
+│       │   │   modules.xml
+│       │   │   vcs.xml
+│       │   │   workspace.xml
+│       │   │   
+│       │   └───libraries
+│       │           hamcrest_integration_1_3.xml
+│       │           
+│       ├───out
+│       │   ├───production
+│       │   │   └───Strassen_Method
+│       │   │           FiTest.class
+│       │   │           jni_blas.dll
+│       │   │           MatFullTest.class
+│       │   │           Matrix.class
+│       │   │           MatrixMethod.class
+│       │   │           MKLOperate.class
+│       │   │           
+│       │   └───test
+│       │       └───Strassen_Method
+│       │               MKLOperateTest.class
+│       │               
+│       ├───src
+│       │       Algorithm.class
+│       │       FiTest.class
+│       │       FiTest.java
+│       │       jni_blas.dll
+│       │       MatFullTest.java
+│       │       Matrix.class
+│       │       Matrix.java
+│       │       MatrixInt.class
+│       │       MatrixMethod.class
+│       │       MatrixMethod.java
+│       │       MKLOperate.class
+│       │       MKLOperate.java
+│       │       Test.class
+│       │       Test2.class
+│       │       TestDemo.class
+│       │       
+│       └───test
+│               MKLOperateTest.java
+│               
+├───ppt
+│   └───slide-UIBK
+│       │   beamerthemeUIBK.sty
+│       │   fftvel.png
+│       │   github2.png
+│       │   ikj_naive_comp.png
+│       │   ikj_naive_strassen_comp.png
+│       │   latex2.png
+│       │   mkl.png
+│       │   mkl_dgemm.png
+│       │   naive_strassen_comp.png
+│       │   sample.aux
+│       │   sample.log
+│       │   sample.nav
+│       │   sample.out
+│       │   sample.pdf
+│       │   sample.snm
+│       │   sample.synctex.gz
+│       │   sample.tex
+│       │   sample.toc
+│       │   sample.vrb
+│       │   sub_naive.png
+│       │   th=2.png
+│       │   th=32_ijk.png
+│       │   th=64.png
+│       │   th=64_ijk.png
+│       │   yagao-logo.jpg
+│       │   yagao.jpg
+│       │   
+│       ├───logo
+│       │       SUSTech_Badge.jpg
+│       │       SUSTech_Logo.jpg
+│       │       
+│       ├───pseudocode
+│       │       naive3.png
+│       │       
+│       └───src
+│               paragraph.ml
+│               
+└───report
+        acmref.bst
+        Experiment design & results.md
+        Experiment design & results.pdf
+        gpu_speed.jpg
+        reference.bib
+        report.aux
+        report.bbl
+        report.blg
+        report.log
+        report.pdf
+        report.synctex.gz
+        report.tex
+        report.toc
+        sustcphys.cls
+        tend-fit.jfif
+        tend-fit.png
+        tend.png
+        
