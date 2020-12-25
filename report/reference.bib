@@ -1,61 +1,120 @@
-@article{strassen1969gaussian,
-title={Gaussian elimination is not optimal},
-author={Strassen, Volker},
-journal={Numerische Mathematik},
-volume={13},
-number={4},
-pages={354--356},
-year={1969}}
-
-@article{pan1981new,
-title={New combinations of methods for the acceleration of matrix multiplications},
-author={Pan, V Ya},
-journal={Computers \& Mathematics With Applications},
-volume={7},
-number={1},
-pages={73--125},
-year={1981}}
-
-@article{COPPERSMITH1990251,
-title = "Matrix multiplication via arithmetic progressions",
-journal = "Journal of Symbolic Computation",
-volume = "9",
-number = "3",
-pages = "251 - 280",
-year = "1990",
-note = "Computational algebraic complexity editorial",
-issn = "0747-7171",
-doi = "https://doi.org/10.1016/S0747-7171(08)80013-2",
-url = "http://www.sciencedirect.com/science/article/pii/S0747717108800132",
-author = "Don Coppersmith and Shmuel Winograd",
-abstract = "We present a new method for accelerating matrix multiplication asymptotically. Thiswork builds on recent ideas of Volker Strassen, by using a basic trilinear form which is not a matrix product. We make novel use of the Salem-Spencer Theorem, which gives a fairly dense set of integers with no three-term arithmetic progression. Our resulting matrix exponent is 2.376."
-}
-
-@article{HARVEY20181,
-title = "On the complexity of integer matrix multiplication",
-journal = "Journal of Symbolic Computation",
-volume = "89",
-pages = "1 - 8",
-year = "2018",
-issn = "0747-7171",
-doi = "https://doi.org/10.1016/j.jsc.2017.11.001",
-url = "http://www.sciencedirect.com/science/article/pii/S0747717117301013",
-author = "David Harvey and Joris {van der Hoeven}",
-keywords = "Matrix multiplication, Complexity, Algorithm, FFT, Bluestein reduction",
-abstract = "Let M(n) denote the bit complexity of multiplying n-bit integers, let ω∈(2,3] be an exponent for matrix multiplication, and let lg⁎⁡n be the iterated logarithm. Assuming that log⁡d=O(n) and that M(n)/(nlog⁡n) is increasing, we prove that d×d matrices with n-bit integer entries may be multiplied inO(d2M(n)+dωn2O(lg⁎⁡n−lg⁎⁡d)M(lg⁡d)/lg⁡d) bit operations. In particular, if n is large compared to d, say d=O(log⁡n), then the complexity is only O(d2M(n))."
-}
-
-@article{article,
-author = {Williams, Virginia},
-year = {2014},
-month = {09},
-pages = {},
-title = {Breaking the Coppersmith-Winograd barrier},
-abstract = "We develop new tools for analyzing matrix multiplication constructions similar to the Coppersmith-Winograd construction, and obtain a new improved bound on ω < 2.3727."
+@inproceedings{10.1145/1274971.1275010,
+    author    = {D'Alberto, Paolo and Nicolau, Alexandru},
+    title     = {Adaptive Strassen's Matrix Multiplication},
+    year      = {2007},
+    isbn      = {9781595937681},
+    publisher = {Association for Computing Machinery},
+    address   = {New York, NY, USA},
+    url       = {https://doi.org/10.1145/1274971.1275010},
+    doi       = {10.1145/1274971.1275010},
+    abstract  = {Strassen's matrix multiplication (MM) has benefits with respect to any (highly tuned) implementations of MM because Strassen's reduces the total number of operations. Strassen achieved this operation reduction by replacing computationally expensive MMs with matrix additions (MAs). For architectures with simple memory hierarchies, having fewer operations directly translates into an efficient utilization of the CPU and, thus, faster execution. However, for modern architectures with complex memory hierarchies, the operations introduced by the MAs have a limited in-cache data reuse and thus poor memory-hierarchy utilization, thereby overshadowing the (improved) CPU utilization, and making Strassen's algorithm (largely) useless on its own.In this paper, we investigate the interaction between Strassen's effective performance and the memory-hierarchy organization. We show how to exploit Strassen's full potential across different architectures. We present an easy-to-use adaptive algorithm that combines a novel implementation of Strassen's idea with the MM from automatically tuned linear algebra software (ATLAS) or GotoBLAS. An additional advantage of our algorithm is that it applies to any size and shape matrices and works equally well with row or column major layout. Our implementation consists of introducing a final step in the ATLAS/GotoBLAS-installation process that estimates whether or not we can achieve any additional speedup using our Strassen's adaptation algorithm. Then we install our codes, validate our estimates, and determine the specific performance.We show that, by the right combination of Strassen's with ATLAS/GotoBLAS, our approach achieves up to 30%/22% speed-up versus ATLAS/GotoBLAS alone on modern high-performance single processors. We consider and present the complexity and the numerical analysis of our algorithm, and, finally, we show performance for 17 (uniprocessor) systems.},
+    booktitle = {Proceedings of the 21st Annual International Conference on Supercomputing},
+    pages     = {284–292},
+    numpages  = {9},
+    keywords  = {matrix multiplications, fast algorithms},
+    location  = {Seattle, Washington},
+    series    = {ICS '07}
 }
 
 @article{1401.7714,
-Author = {François Le Gall},
-Title = {Powers of Tensors and Fast Matrix Multiplication},
-Year = {2014},
+    author = {François Le Gall},
+    title  = {Powers of Tensors and Fast Matrix Multiplication},
+    year   = {2014}
+}
+
+@article{article,
+    author   = {Williams, Virginia},
+    year     = {2014},
+    month    = {09},
+    pages    = {},
+    title    = {Breaking the Coppersmith-Winograd barrier},
+    abstract = {We develop new tools for analyzing matrix multiplication constructions similar to the Coppersmith-Winograd construction, and obtain a new improved bound on ω < 2.3727.}
+}
+
+@article{Bailey1991,
+    author   = {Bailey, David H.
+and Lee, King
+and Simon, Horst D.},
+    title    = {Using Strassen's algorithm to accelerate the solution of linear systems},
+    journal  = {The Journal of Supercomputing},
+    year     = {1991},
+    month    = {Jan},
+    day      = {01},
+    volume   = {4},
+    number   = {4},
+    pages    = {357-371},
+    abstract = {Strassen's algorithm for fast matrix-matrix multiplication has been implemented for matrices of arbitrary shapes on the CRAY-2 and CRAY Y-MP supercomputers. Several techniques have been used to reduce the scratch space requirement for this algorithm while simultaneously preserving a high level of performance. When the resulting Strassen-based matrix multiply routine is combined with some routines from the new LAPACK library, LU decomposition can be performed with rates significantly higher than those achieved by conventional means. We succeeded in factoring a 2048 {\texttimes} 2048 matrix on the CRAY Y-MP at a rate equivalent to 325 MFLOPS.},
+    issn     = {1573-0484},
+    doi      = {10.1007/BF00129836},
+    url      = {https://doi.org/10.1007/BF00129836}
+}
+
+@article{COPPERSMITH1990251,
+    title    = {Matrix multiplication via arithmetic progressions},
+    journal  = {Journal of Symbolic Computation},
+    volume   = {9},
+    number   = {3},
+    pages    = {251 - 280},
+    year     = {1990},
+    note     = {Computational algebraic complexity editorial},
+    issn     = {0747-7171},
+    doi      = {https://doi.org/10.1016/S0747-7171(08)80013-2},
+    url      = {http://www.sciencedirect.com/science/article/pii/S0747717108800132},
+    author   = {Don Coppersmith and Shmuel Winograd},
+    abstract = {We present a new method for accelerating matrix multiplication asymptotically. Thiswork builds on recent ideas of Volker Strassen, by using a basic trilinear form which is not a matrix product. We make novel use of the Salem-Spencer Theorem, which gives a fairly dense set of integers with no three-term arithmetic progression. Our resulting matrix exponent is 2.376.}
+}
+
+@article{HARVEY20181,
+    title    = {On the complexity of integer matrix multiplication},
+    journal  = {Journal of Symbolic Computation},
+    volume   = {89},
+    pages    = {1 - 8},
+    year     = {2018},
+    issn     = {0747-7171},
+    doi      = {https://doi.org/10.1016/j.jsc.2017.11.001},
+    url      = {http://www.sciencedirect.com/science/article/pii/S0747717117301013},
+    author   = {David Harvey and Joris {van der Hoeven}},
+    keywords = {Matrix multiplication, Complexity, Algorithm, FFT, Bluestein reduction},
+    abstract = {Let M(n) denote the bit complexity of multiplying n-bit integers, let ω∈(2,3] be an exponent for matrix multiplication, and let lg⁎⁡n be the iterated logarithm. Assuming that log⁡d=O(n) and that M(n)/(nlog⁡n) is increasing, we prove that d×d matrices with n-bit integer entries may be multiplied inO(d2M(n)+dωn2O(lg⁎⁡n−lg⁎⁡d)M(lg⁡d)/lg⁡d) bit operations. In particular, if n is large compared to d, say d=O(log⁡n), then the complexity is only O(d2M(n)).}
+}
+
+@inproceedings{implemofmatrstrass,
+    author    = {S. {Huss-Lederman} and E. M. {Jacobson} and J. R. {Johnson} and A. {Tsao} and T. {Turnbull}},
+    booktitle = {Supercomputing '96:Proceedings of the 1996 ACM/IEEE Conference on Supercomputing},
+    title     = {Implementation of Strassen's Algorithm for Matrix Multiplication},
+    year      = {1996},
+    volume    = {},
+    number    = {},
+    pages     = {32-32},
+    doi       = {10.1109/SUPERC.1996.183534}
+}
+
+@article{pan1981new,
+    title   = {New combinations of methods for the acceleration of matrix multiplications},
+    author  = {Pan, V Ya},
+    journal = {Computers \& Mathematics With Applications},
+    volume  = {7},
+    number  = {1},
+    pages   = {73--125},
+    year    = {1981}
+}
+
+@article{strasscomp,
+    author  = {Mathew, DrJuby},
+    year    = {2012},
+    month   = {03},
+    pages   = {749-754},
+    title   = {Comparative Study of Strassen’s Matrix Multiplication Algorithm},
+    volume  = {3},
+    journal = {InternatIonal Journal of Computer Science and Technology}
+}
+
+@article{strassen1969gaussian,
+    title   = {Gaussian elimination is not optimal},
+    author  = {Strassen, Volker},
+    journal = {Numerische Mathematik},
+    volume  = {13},
+    number  = {4},
+    pages   = {354--356},
+    year    = {1969}
 }

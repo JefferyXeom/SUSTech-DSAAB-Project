@@ -149,11 +149,37 @@ aboveskip=1em
 
 \section{Introduction}
 \label{sec::Intro}
+\subsection{Importance of Boosting Matrix Operations}
+\label{subsec::IBMO}
 The multiplication of two matrices is one of the most basic operations of linear algebra and scientific computing. Modern signal processing, artificial intelligence and computer vision are all based on the fast and accurate algorithm of matrix multiplication, LU/QR/SVD decomposition and many other operations. For example, the FFT(Fast Fourier Transform) is based on the superior acceleration of the multiplication with FFT transforming matrices, and the CNN(Convolutional Neural Network) and many other NNs depend on the quick matrix operations boosted by the sophisticated algorithms and GPU/FPGA/etc. accelerators to achieve such a speed we've witnessed today.
 
+\subsection{Significance of Strassen Algorithm}
+\label{subsec::SoSAl}
+Strassen's algorithm is one of the best-known algorithm optimization for matrix multiplication, which achieves a time complexity of $O(n^{log7})$ - seems a lot more efficient compared with the standard matrix multiplication of time complexity $O(n^3)$. However, from a practical point of view, Strassen's algorithm is often not the method of choice for matrix multiplication. Because the constant factor of Strassen's running time is larger than that of the standard method, causing its low efficiency for matrix sizes that are seen in practice. Another main reason lies in that the recursion of Strassen's consumes space.
+
+\subsection{Accomplishments}
+\label{subsec::Accom}
+Our main interest is the design and implementation of codes that have high adaptability for matrix multiplication. In this report, we discuss a single but fundamental kernel in dense linear algebra: matrix multiply for any size and shape matrices stored in double precision and in standard row major layout. In our project,  we establish an adaptive matrix multiplication for dense matrices - use Strassen’s algorithm for matrix sizes above a crossover point, and then switch to a simpler method once the subproblem size reduces to below the crossover point. And we also extend the Strassen's algorithm to any matrix sizes but not only for $2^n\times 2^n$ matrices. Furthermore, we apply a series of optimization from algorithm to hardware in order to accelerate the matrix multiplication as much as possible.
+
+The report is organized as follows. In Section 2, we discuss the background of our work based on \cite{10.1145/1274971.1275010}. In Section 3, we estimate the crossover point analytically using an abstract model.  In section 4, we explain Strassen's algorithm and standard method in detail. In section 5, we present our experiment design that describes our implementation of the adaptive algorithm, and discuss its basic principle and practical advantage. In section 6, we present our experimental results. We conclude in Section 7.
 \section{Background}
 \label{sec::bgnd}
 
+\subsection{Disadvantages of Pure-Software Optimization}
+\label{subsec::DoPutOp}
+While the modern architecture composed of processors, memory hierarchy and devices undergoes rapid and steady development, the system performance on a given application does not always get a proportional increase, due to the limits of the code composed of algorithms, software packages and libraries steering the computation on the hardware. Thus, to enable the system to deliver peak performance, the code must adapt to the architecture evolution.
+
+Strassen's matrix multiplication (MM) achieves operation reduction by replacing computationally expensive MMs with matrix additions (MAs). For architectures with simple memory hierarchies, it results in faster execution. However, for modern architectures with complex memory hierarchies, it is largely useless since the operations introduced by the MAs have a limited in-cache data reuse and thus poor memory-hierarchy utilization, thereby poor CPU utilization.
+
+Thus, the authors investigate the interaction between Strassen's effective performance and the memory-hierarchy organization, showing how to exploit Strassen's full potential across different architectures - finding an effective solution for the efficient utilization of (and portability across) complex and always-changing architectures.
+
+\subsection{BLAS, LAPACK and Other Engineering Acceleration}
+\label{subsec::BLAaOEAc}
+The authors extend Strassen's algorithm to deal with rectangular and arbitrary-size matrices so as to exploit better data locality and number of operations, and thus better performance. The implementation of the adaptive algorithm is as follows. First, use a cache oblivious algorithm (balanced MM) to reduce the problem to almost square matrices. This algorithm divides the problem and specifies the operands so that the subproblems have balanced workload and similar operand shapes and sizes, thereby it exploits better data locality in the memory hierarchy. Second, deploy generalization of Strassen's MM algorithm - Hybrid ATLAS/GotoBLAS-Strassen algorithm (HASA), to reduces the number of passes through the data as well as the computation work. This algorithm can be applied to any matrix sizes.
+
+The authors design the experiments for rectangular matrices and square matrices separately. For rectangular matrices, they investigate the effects of the problem sizes and shapes w.r.t. the algorithm choice and the architecture. Through a general performance comparison of the balanced MM and HASA with respect to the routine \textit{cblas\_dgemm} using ATLAS, it can be concluded that Strassen's algorithm can be applied successfully to rectangular matrices and can achieve significant improvements in performance, and \textit{Balanced} presents very predictable performance with often better peak performance than \textit{HASA dynamic}. Through a general performance comparison of two algorithms with respect to GotoBLAS \textit{DGEMM} (resp. Balanced and HASA) and for two architectures Athlon 64 2.4GHz and Pentium 4 3.2 GHz, it can be concluded that the algorithm is almost unaffected by the change of the leaf implementation, leading to comparable and even better improvements. For square matrices, they show how effective their approach is for a large set of different architectures and odd matrix sizes. For each architecture, there are three implementations: the C-code implementation \textit{cblas\_dgemm} of MM in double precision from ATLAS, HASA, and hand-coded MA, which is tailored to each architecture. Through testing extensively the performance of the approach on 17 systems, it can be shown that Strassen is not always applicable and, for modern systems, the recursion point is quite large. However, speedups up to 30\% are observed over already tuned MM using this hybrid approach.
+
+For practical use in the scientific community or industry, the algorithm can go a long way in helping the design of complex-but-portable codes. Such metrics can improve the design of the algorithms and may serve as a foundation for a fully automated approach. In the era of big data, such efficient and adaptive algorithm is of great significance. A specific example is its potential application in convolutional neural networks, contributing to the digital image processing technology.
 \section{Therotical Analysis}
 \label{sec::TA}
 
@@ -247,6 +273,88 @@ The \(n\) in this result is the number of the \(Operation\), which is in propoti
 \begin{equation}
   t(n)=\alpha \text{Rows},\alpha\in(1,\infty)
 \end{equation}
+\subsection{Crossover Point Estimation}
+\label{CPE}
+
+To obtain an efficient implementation of Strassen's algorithm, it should be noted that we do not have to carry the Strassen recursions all the way to the scalar level; one key element is to in fact stop the recursions early, switching to the standard algorithm when Strassen's construction no longer leads to an improvement. The test used to determine whether or not to apply another level of recursion is called the cutoff criterion.
+
+In this section, we use \textbf{operation count model} as a cost function to theoretically estimate the \textbf{optimal crossover point} - the size of matrices for which an implementation of Strassen's algorithm becomes more efficient than the conventional standard algorithm.
+
+The standard algorithm for multiplying two $m\times m$ matrices requires $m^3$ scalar multiplications and $m^3 -m^2$ scalar additions, for a total arithmetic operation count of $2m^3 -m^2$. Strassen's algorithm is based on a clever way of multiplying $2\times 2$ matrices using 7 multiplications and 18 additions and subtractions. The rough procedure of Strassen's method is as follows:
+\begin{equation}
+  \begin{aligned}
+    \left(\begin{array}{cc} C_{11}&C_{12}\\C_{21}&C_{22}\\ \end{array}\right)=\left(\begin{array}{cc} A_{11}&A_{12}\\A_{21}&A_{22}\\ \end{array}\right)\cdot \left(\begin{array}{cc} B_{11}&B_{12}\\B_{21}&B_{22}\\ \end{array}\right) \\
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    S_{1} & =B_{12}-B_{22}\qquad & S_{2}  & =A_{11}+A_{12} \\
+    S_{3} & =A_{21}+A_{22}\qquad & S_{4}  & =B_{21}-B_{11} \\
+    S_{5} & =A_{11}+A_{22}\qquad & S_{6}  & =B_{11}+B_{22} \\
+    S_{7} & =A_{12}-A_{22}\qquad & S_{8}  & =B_{21}+B_{22} \\
+    S_{9} & =A_{11}-A_{21}\qquad & S_{10} & =B_{11}+B_{12}
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    P_1 & =A_{11}\cdot S_1   \\
+    P_2 & =S_{2}\cdot B_{22} \\
+    P_3 & =S_3 \cdot B_{11}  \\
+    P_4 & =A_{22}\cdot S_4   \\
+    P_5 & = S_5 \cdot S_6    \\
+    P_6 & = S_7 \cdot S_8    \\
+    P_7 & =S_9 \cdot S_{10}
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    C_{11} & =P_5+P_4-P_2+P_6 \\
+    C_{12} & =P_1+P_2         \\
+    C_{21} & =P_3+P_4         \\
+    C_{22} & =P_5+P_1-P_3-P_7
+  \end{aligned}
+\end{equation}
+Let $G(m, n)$ be the cost of adding or subtracting two $m\times n$ matrices and let $M(m,k,n)$ be the cost of multiplying an $m \times k$ matrix by a $k\times n$ matrix using the standard matrix multiplication algorithm. Then, assuming $m,\ k$  and  $n$  are even, the cost of Strassen's algorithm, $S(m, k, n)$, to multiply an $m\times k$ matrix A by a $k\times n$ matrix B satisfies the following recurrence relation:
+
+\begin{equation}
+  \ S(m,k,n) = \begin{cases} M(m,k,n), & \text{when m, k, n satisfies the cutoff criterion}\\ 7S(\frac{m}{2},\frac{k}{2},\frac{n}{2})+5G(\frac{m}{2},\frac{k}{2})+5G(\frac{k}{2},\frac{n}{2})+8G(\frac{m}{2},\frac{n}{2}), & \text{otherwise} \end{cases}
+\end{equation}
+
+Throughout the remainder of this section we will model costs by operation counts, implying that $M(m,k,n)=2mkn-mn$ and $G(m,n)=mn$.
+
+If A and B are of size $2^d m'\times 2^d k'$ and $2^d k'\times 2^d n'$, respectively,  then Strassen's algorithm can be used recursively $d$ times. If we choose to stop recursion after these $d$ applications of Strassen's algorithm, so that the standard algorithm is used to multiply the resulting $m' \times k'$ and $k' \times n'$ matrices, then
+\begin{equation}
+  S(2^dm',2^dk',2^dn')=7^d(2m'k'n'-m'n')+\frac{(7^d-4^d)(5m'k'+5k'n'+8m'n')}{3}
+\end{equation}
+For the square matrix case $m'=k'=n'$, (2) simplifies to
+\begin{equation}
+  S(2^dm')\equiv S(2^dm',2^dm',2^dm')=7^d(2(m')^3-(m')^2)+6(m')^2(7^d-4^d)
+\end{equation}
+In order to establish the proper crossover point for both the square and rectangular case, we need to characterize the set of positive $(m,k,n)$ such that using the standard algorithm alone is less costly than applying one level of Strassen's recursion followed by the standard method. This is equivalent to finding the solutions to the inequality
+\begin{equation}
+  M(m,k,n)\leq 7M(\frac{m}{2},\frac{k}{2},\frac{n}{2})+5G(\frac{m}{2},\frac{k}{2})+5G(\frac{k}{2},\frac{n}{2})+8G(\frac{m}{2},\frac{n}{2})
+\end{equation}
+Using operation counts this becomes
+\begin{equation}
+  mkn\leq 5(mk+kn+mn)
+\end{equation}
+which is equivalent to
+\begin{equation}
+  1 \leq 5(1/n+1/m+1/k)
+\end{equation}
+It is easy to completely characterize the positive integer solutions to (5) and (6). In the square (m = k = n) case we obtain $m\leq 15$. Thus, we should switch to regular matrix multiplication whenever the remaining matrix multiplications involve matrices whose order is 15 or less. The crossover point for square matrices is 15.
+
+To see how valuable the use of cutoff can be, we can also compute, using equation (3), the ratio of the operation counts for Strassen's method on square matrices without cutoff to that with cutoff 15. For matrices of order 256 this means we compute the ratio (3) with $d=8, m'=1$ to (3) with $d=5, m'=8$, obtaining a 44.5% improvement using cutoffs.
+
+Returning to establishing the cutoff criterion, the situation is more complicated for rectangular matrices. We illustrate it with an example. If $m=8,\ k=18,\ n=84\ $,  (5) is not satisfied; thus recursion should be used when multiplying $8 \times 18$ and $18 \times 84$ matrices. This shows that there are situations where it is beneficial to apply Strassen's algorithm even though one of the matrix dimensions is smaller than the optimal crossover point of 15 for square matrices. Therefore, at least theoretically, when considering rectangular matrices, the cutoff criterion (5) should be used instead of the simpler condition, $m\leq 15\ or\ k\leq 15\ or\ n\leq 15$ .
+
+Now based on the operation count model, we have discussed the optimal crossover point analytically for both the square and rectangular matrices.
+
+However, in practice, operation count is not an accurate enough predictor of performance to be used to tune actual code, since it ignores the effects from caches, pipelining and so on. As a matter of fact, the particular crossover point depends on the specific implementation and hardware. And it has been observed that this crossover point has been increasing in recent years, and a 2010 study found that even a single step of Strassen's algorithm is often not beneficial on current architectures, compared to a highly optimized traditional multiplication, until matrix sizes exceed 1000 or more, and even for matrix sizes of several thousand the benefit is typically marginal at best.
+
+Alternatively, instead of using the operation count model to predict the proper crossover point, we also implement experiments to empirically determine the appropriate cutoff in a manner very similar to the theoretical analysis. A discussion of the concrete experiments and the empirical results are shown in the following sections.
 \subsection{Moreover on Algorithm-Only Optimizations}
 \label{subsec::MoAOO}
 The Strassen's algorithm opened a whole new possibility that the time complexity of matrix multiplication algorithm can be reduced to a degree less than 3. After the proposal of the Strassen's algorithm, there are a lot of its succesors like the Coppersmith-Winograd algorithm and the Harvard algorithm. These more sophisticated solutions are able to reduce the time complexity further, from the \(O(n^{2.81})\) record created by Strassen's algorithm to \(O(n^{2.373})\).
@@ -464,67 +572,64 @@ to perform the benchmarking, and used Python in the data fitting process.
 \subsection{Code implements of 11 experiments and optimizations}
 The specific coding implementation of our experiment includes 11 parts:
 
-\begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \item
-        \textbf{the standard matrix multiplication (naive method/ brute-force
-          method) for arbitrary size}
+\subsubsection{the standard matrix multiplication (naive method/ brute-force
+  method) for arbitrary size}
 
-        As the pseudocode shows before, the standard matrix multiplication is
-        computed by three nested for-loops.
-  \item
-        \textbf{extend brute-force method by partitioning matrices based on
-          minimum alignment factor for arbitrary size}
+As the pseudocode shows before, the standard matrix multiplication is
+computed by three nested for-loops.
+\subsubsection{extend brute-force method by partitioning matrices based on
+  minimum alignment factor for arbitrary size}
 
-        The minimum alignment factor means: factorizing the matrix order \(N\)
-        into two factors such that the difference of the two factors is
-        minimum.
-  \item
-        \textbf{normal Strassen's method (for matrix size of
-          \(2^n \times 2^n\))}
+The minimum alignment factor means: factorizing the matrix order \(N\)
+into two factors such that the difference of the two factors is
+minimum.
 
-        As the pseudocode shows before.
-  \item
-        \textbf{extend Strassen's method to arbitrary size, by padding zeros
-          to the outermost so that the matrix size is \(2^n\times 2^n\)}
-  \item
-        \textbf{optimize Strassen's method by partitioning matrices based on
-          factor of power-of-2 for even order matrices}
-  \item
-        \textbf{extend Strassen's method of \textless5\textgreater{} to
-          arbitrary size, by padding zeros to the outermost so that the matrix
-          size is \(2^n\times 2^n \)}
-  \item
-        \textbf{optimize Strassen's method of \textless4\textgreater{} by
-          adding threshold judgment}
+The minimum alignment factor means: factorizing the matrix order $N$ into two factors such that the difference of the two factors is minimum.
 
-        According to our experimental test, we set the threshold as N=64. Once
-        the size of submatrices is under 64 by 64, stop the Strassen's
-        recursions and switch to the brute-force algorithm.
-  \item
-        \textbf{optimize Strassen's method of \textless6\textgreater{} by
-          adding threshold judgment}
-  \item
-        \textbf{optimize Strassen's method of \textless8\textgreater{} by
-          completing the matrix to make one factor be power-of-2}
+For the brute-force method, partitioning matrices for multiplication does not change the operation counts. Its time complexity remains $O(n^3)$. Now for an $n\times n$ matrix, we partition it into submatrices of $m\times m$. That is, the matrix is divided into a total of $(\frac{n}{m})^2$ submatrices. Thereby the operation counts of multiplying is $(\frac{n}{m})^2\times n\times m^2$. After partitioning, the multiplication of matrices are based on the $m \times m$ submatrices. The elements in the original $n\times n$ matrix are no longer numbers, but the $m\times m$ submatrices. For each multiplication of two $n\times n$ matrices, the innermost loop is the operation on the small submatrices, which is nested in three loops. Thus, there are two nested loops of large matrices and three nested loops of small matrices altogether.
 
-        Other than padding zeros to the outermost to get \(2^n\times2^n\)
-        matrices, we apply a cleverer way of matrix completion: padding
-        appropriate zeros to make its size suitable for a good factorization
-        which enables one factor to be a high-power-of-2.
-  \item
-        \textbf{optimize algorithm by exchanging the sequences of loops:
-          change \(ijk\) into \(ikj\)}
-  \item
-        \textbf{implementation of \(MKL\) (Intel(R) Math Kernel Library)}
+For the original matrix, we represent it by one-dimensional arrays. The elements (numbers) in the array use different physical addresses of memory. So in each loop or when the loop updates, the pointer jumps, which decreases the operation speed or even more causes the pointer failing to hit in the case of multiple data. Nevertheless, our adopted small matrices can realize the improvement that it stores and reads data in adjacent position, increasing the data access performance and further accelerating the operation.
+\subsubsection{normal Strassen's method (for matrix size of \(2^n \times 2^n\))}
 
-        The Intel(R) MKL is an optimized implementation of many math functions
-        exclusively on x86 architecture and processors supports the Intel SIMD
-        instructions, especially in Intel(R) processors. This library is
-        implemented by assembly codes and C++ codes that are extremely
-        optimized by Intel SIMD instructions (SSE,AVX), in order to maximize
-        performance on matrix operations.
-\end{enumerate}
+As the pseudocode shows before.
+\subsubsection{extend Strassen's method to arbitrary size, by padding zeros
+  to the outermost so that the matrix size is \(2^n\times 2^n\)}
+
+\subsubsection{optimize Strassen's method by partitioning matrices based on
+  factor of power-of-2 for even order matrices}
+
+\subsubsection{extend Strassen's method of method \textless5\textgreater{} to
+  arbitrary size, by padding zeros to the outermost so that the matrix
+  size is \(2^n\times 2^n \)}
+
+\subsubsection{optimize Strassen's method of method \textless4\textgreater{} by
+  adding threshold judgment}
+According to our experimental test, we set the threshold as N=64. Once
+the size of submatrices is under 64 by 64, stop the Strassen's
+recursions and switch to the brute-force algorithm.
+
+\subsubsection{optimize Strassen's method of method \textless6\textgreater{} by
+  adding threshold judgment}
+
+\subsubsection{optimize Strassen's method of method \textless8\textgreater{} by
+  completing the matrix to make one factor be power-of-2}
+Other than padding zeros to the outermost to get \(2^n\times2^n\)
+matrices, we apply a cleverer way of matrix completion: padding
+appropriate zeros to make its size suitable for a good factorization
+which enables one factor to be a high-power-of-2.
+
+\subsubsection{optimize algorithm by exchanging the sequences of loops:
+  change \(ijk\) into \(ikj\)}
+
+This part will be discussed in details in the first part of section 5.3.2 \textbf{Cache Alignment}.
+
+\subsubsection{implementation of \(MKL\) (Intel(R) Math Kernel Library)}
+The Intel(R) MKL is an optimized implementation of many math functions
+exclusively on x86 architecture and processors supports the Intel SIMD
+instructions, especially in Intel(R) processors. This library is
+implemented by assembly codes and C++ codes that are extremely
+optimized by Intel SIMD instructions (SSE,AVX), in order to maximize
+performance on matrix operations.
 
 The 11 parts above is a process of gradual optimization step by step for
 the matrix multiplication algorithm. As a result of full investigation
@@ -544,7 +649,8 @@ CPU: Intel(R) Core(TM) i7-9750HQ@3.85 ̃4.05GHz
 
 RAM: 32GB 2666MHz
 
-\textbf{1. Naive method and Strassen's algorithm}
+\subsection{Naive Method and Strassen's Algorithm}
+\label{subsec::NMaSAl}
 
 By implementing naive matrix multiplications and Strassen algorithm on
 Java and fit the data, the standard data of the two algorithms are
@@ -558,15 +664,23 @@ Java and fit the data, the standard data of the two algorithms are
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[height=7.0cm]{../ppt/slide-UIBK/th=2.png}
-  \caption{}
+  \includegraphics[height=6.0cm]{../ppt/slide-UIBK/th=2.png}
+  \caption{Threshold=2}
 \end{figure}
 
 This result shows that the Strassen's Algorithm is seemingly faster than
 the brute-force matrix multiplication, but neither of them even reaches
 the time complexity of \(O(n^3)\).
 
-\textbf{2. Strassen's algorithm with minimum size threshold}
+After setting the threshold at 64 and utilizing the \(ikj\)-order basic multiplication, the comparison between the sectioned brute-forcing and the optimized Strassen's algorithm is shown below with the time complexity plotting:
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=6.0cm]{../ppt/slide-UIBK/naive_strassen_comp.png}
+  \end{center}
+\end{figure}
+
+\subsection{Strassen's Algorithm with Minimum Size Threshold}
+\label{subsec::SAwMST}
 
 The main reason causing the Strassen's algorithm slower than the
 brute-forcing algorithm is the time costs in trace-backing the
@@ -587,12 +701,14 @@ brute-force algorithm.
 \begin{figure}[htb]
   \centering
   \includegraphics[height=7.0cm]{../ppt/slide-UIBK/th=64.png}
-  \caption{}
+  \caption{Threshold=64}
 \end{figure}
 
-\textbf{3. Hardware optimization}
+\subsection{Hardware Optimization}
+\label{subsec::HaO}
 
-\textbf{(1) Cache alignment}
+\subsubsection{Cache alignment}
+\label{subsubsec::CaAl}
 
 By implementing the \(ikj\) sequence of for-loops with improved cache
 accuracy, as explained before, the Strassen's algorithm can meet the
@@ -608,13 +724,13 @@ theoretical time complexity:
 \begin{figure}[htb]
   \centering
   \includegraphics[height=6.8cm]{../ppt/slide-UIBK/th=32_ijk.png}
-  \caption{}
+  \caption{Threshold=32 and inverted ikj}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
   \includegraphics[height=7.0cm]{../ppt/slide-UIBK/th=64_ijk.png}
-  \caption{}
+  \caption{Threshold=64 and inverted ikj}
 \end{figure}
 
 When the order of the matrix is very large, the length of the row-major
@@ -645,10 +761,23 @@ And we can get the time complexity by data fitting:
 \begin{figure}[htb]
   \centering
   \includegraphics[height=6.7cm]{../ppt/slide-UIBK/sub_naive.png}
-  \caption{}
+  \caption{Sectioned naive multplication}
 \end{figure}
 
-\textbf{(2) Implementation with Intel MKL}
+With a wider range, there is a better fit result:
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=6.3cm]{../ppt/slide-UIBK/ikj_naive_comp.png}
+  \end{center}
+\end{figure}
+And we're able to compare the brute-forcing algorithm, thresholded Strassen's algorithm and the sectioned brute-forcing algorithm by using python to fit the benchmarking data:
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=4.3cm]{../ppt/slide-UIBK/ikj_naive_strassen_comp.png}
+  \end{center}
+\end{figure}
+\subsubsection{Implementation with Intel MKL}
+\label{subsubsec::IwIMKL}
 
 Under the C++ implementation, the Intel MKL computes the 2500*2500
 matrix multiplication within 6000 milliseconds, including filling the

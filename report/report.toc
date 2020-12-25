@@ -1,15 +1,37 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{}%
-\contentsline {section}{\numberline {2}Background}{1}{}%
-\contentsline {section}{\numberline {3}Therotical Analysis}{1}{}%
-\contentsline {subsection}{\numberline {3.1}Brute-Force Algorithm}{2}{}%
-\contentsline {subsection}{\numberline {3.2}Strassen Algorithm}{2}{}%
-\contentsline {subsection}{\numberline {3.3}Moreover on Algorithm-Only Optimizations}{3}{}%
-\contentsline {subsection}{\numberline {3.4}Cache Alignement}{3}{}%
-\contentsline {subsection}{\numberline {3.5}SIMD instructions and BLAS Library}{4}{}%
-\contentsline {section}{\numberline {4}Methodology and Experiment Design}{5}{}%
-\contentsline {subsection}{\numberline {4.1}Benchmark and Fitting code}{5}{}%
-\contentsline {paragraph}{Benchmark code}{5}{}%
-\contentsline {paragraph}{Python fitting code}{6}{}%
-\contentsline {subsection}{\numberline {4.2}Code implements of 11 experiments and optimizations}{6}{}%
-\contentsline {section}{\numberline {5}Empirical Analysis}{7}{}%
-\contentsline {section}{\numberline {6}Conclusion}{10}{}%
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Importance of Boosting Matrix Operations}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Significance of Strassen Algorithm}{2}{}%
+\contentsline {subsection}{\numberline {1.3}Accomplishments}{2}{}%
+\contentsline {section}{\numberline {2}Background}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Disadvantages of Pure-Software Optimization}{3}{}%
+\contentsline {subsection}{\numberline {2.2}BLAS, LAPACK and Other Engineering Acceleration}{3}{}%
+\contentsline {section}{\numberline {3}Therotical Analysis}{4}{}%
+\contentsline {subsection}{\numberline {3.1}Brute-Force Algorithm}{4}{}%
+\contentsline {subsection}{\numberline {3.2}Strassen Algorithm}{4}{}%
+\contentsline {subsection}{\numberline {3.3}Crossover Point Estimation}{5}{}%
+\contentsline {subsection}{\numberline {3.4}Moreover on Algorithm-Only Optimizations}{7}{}%
+\contentsline {subsection}{\numberline {3.5}Cache Alignement}{7}{}%
+\contentsline {subsection}{\numberline {3.6}SIMD instructions and BLAS Library}{8}{}%
+\contentsline {section}{\numberline {4}Methodology and Experiment Design}{9}{}%
+\contentsline {subsection}{\numberline {4.1}Benchmark and Fitting code}{9}{}%
+\contentsline {paragraph}{Benchmark code}{9}{}%
+\contentsline {paragraph}{Python fitting code}{10}{}%
+\contentsline {subsection}{\numberline {4.2}Code implements of 11 experiments and optimizations}{10}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}the standard matrix multiplication (naive method/ brute-force method) for arbitrary size}{10}{}%
+\contentsline {subsubsection}{\numberline {4.2.2}extend brute-force method by partitioning matrices based on minimum alignment factor for arbitrary size}{10}{}%
+\contentsline {subsubsection}{\numberline {4.2.3}normal Strassen's method (for matrix size of \(2^n \times 2^n\))}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.4}extend Strassen's method to arbitrary size, by padding zeros to the outermost so that the matrix size is \(2^n\times 2^n\)}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.5}optimize Strassen's method by partitioning matrices based on factor of power-of-2 for even order matrices}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.6}extend Strassen's method of method \textless 5\textgreater {} to arbitrary size, by padding zeros to the outermost so that the matrix size is \(2^n\times 2^n \)}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.7}optimize Strassen's method of method \textless 4\textgreater {} by adding threshold judgment}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.8}optimize Strassen's method of method \textless 6\textgreater {} by adding threshold judgment}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.9}optimize Strassen's method of method \textless 8\textgreater {} by completing the matrix to make one factor be power-of-2}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.10}optimize algorithm by exchanging the sequences of loops: change \(ijk\) into \(ikj\)}{11}{}%
+\contentsline {subsubsection}{\numberline {4.2.11}implementation of \(MKL\) (Intel(R) Math Kernel Library)}{11}{}%
+\contentsline {section}{\numberline {5}Empirical Analysis}{11}{}%
+\contentsline {subsection}{\numberline {5.1}Naive Method and Strassen's Algorithm}{12}{}%
+\contentsline {subsection}{\numberline {5.2}Strassen's Algorithm with Minimum Size Threshold}{12}{}%
+\contentsline {subsection}{\numberline {5.3}Hardware Optimization}{13}{}%
+\contentsline {subsubsection}{\numberline {5.3.1}Cache alignment}{13}{}%
+\contentsline {subsubsection}{\numberline {5.3.2}Implementation with Intel MKL}{14}{}%
+\contentsline {section}{\numberline {6}Conclusion}{16}{}%

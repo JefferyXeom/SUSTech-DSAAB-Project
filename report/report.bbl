@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{10.1145/1274971.1275010}
+P.~D'Alberto and A.~Nicolau, ``Adaptive strassen's matrix multiplication,'' in
+  {\em Proceedings of the 21st Annual International Conference on
+  Supercomputing}, ICS '07, (New York, NY, USA), p.~284–292, Association for
+  Computing Machinery, 2007.
+
 \bibitem{strassen1969gaussian}
 V.~Strassen, ``Gaussian elimination is not optimal,'' {\em Numerische
   Mathematik}, vol.~13, no.~4, pp.~354--356, 1969.
